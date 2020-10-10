@@ -15,6 +15,8 @@ Modelagem ER - Banco de Dados - Loja Virtual
       * Pedro Ladeira Loes
 <!--te-->
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1PeIUI6mdR7XZz9lMiVm0VKuIou6FKXZE#scrollTo=1bgkBvAGpI4U&uniqifier=1)
+
 <h4 align="center"> 
 	🚧  IBD_TP_LOJA_VIRTUAL 🚀 Em construção...  🚧
 </h4>
