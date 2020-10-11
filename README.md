@@ -56,6 +56,10 @@ Restrições das Relações Projeto Lógico
 
 O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python.
 
+* Gera Data Frames no Pandas
+
+![Tabelas Pandas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/tabelas_pandas.png)
+
 * Define Função para_sql e gera motor SGBD
 
 ![Funçõa e Motor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/def_func_engine.png)
