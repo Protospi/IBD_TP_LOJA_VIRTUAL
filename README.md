@@ -58,7 +58,8 @@ O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para c
 
 * Gera Data Frames no Pandas
 
-<pre><code># Declara data frame de Clientes com 500 clientes
+```python
+# Declara data frame de Clientes com 500 clientes
 Cliente = pd.DataFrame({'ID_Cliente' : range(89),
                        'Nome' : np.random.choice(Homens + Mulheres, 89).tolist(),
                        'Email' : email_Cliente})
@@ -93,11 +94,12 @@ Entrega['Data'] = [str(i) for i in pd.to_datetime(Entrega['Data']).dt.date]
 # Declara Data Frame Sobrenome
 Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
                           'Sobrenome' : Sobrenomes})		  
-</code></pre>
+```
 
 * Define Função para_sql e gera motor SGBD
 
-<pre><code># Define Função
+```python
+# Define Função
 def para_sql(df, nome):
   rows = df.to_records(index=False)
   values = ', '.join(map(str, rows))
@@ -106,11 +108,12 @@ def para_sql(df, nome):
 
 # Cria Motor de SQL 
 engine = create_engine('sqlite:///ibdtp.db', echo = False)
-</code></pre>
+```
 
 * Gera tabela de Clientes
 
-<pre><code># Converte para SQL
+```python
+# Converte para SQL
 sql = para_sql(Cliente,"Cliente")
 
 # Apaga tabela se já existir
@@ -126,11 +129,12 @@ engine.execute("CREATE TABLE Cliente ( \
 
 # Popula tabela
 engine.execute(sql)
-</code></pre>
+```
 
 * Gera tabela de Sobrenomes
 
-<pre><code># Converte para SQL
+```python
+# Converte para SQL
 sql = para_sql(Sobrenome,"Sobrenome")
 
 # Apaga tabela se já existir
@@ -145,11 +149,11 @@ engine.execute("CREATE TABLE Sobrenome ( \
 
 # Popula tabela
 engine.execute(sql)
-</code></pre>
+```
 
 * Gera tabela de Fornecedor
 
-<pre><code># Converte para SQL
+```python# Converte para SQL
 sql = para_sql(Fornecedor,"Fornecedor")
 
 # Apaga tabela se já existir
@@ -165,11 +169,12 @@ engine.execute("CREATE TABLE Fornecedor ( \
 
 # Popula tabela
 engine.execute(sql)
-</code></pre>
+```
 
 * Gera tabela de Produtos
 
-<pre><code># Converte para SQL
+```python
+# Converte para SQL
 sql = para_sql(Produto,"Produto")
 
 # Apaga tabela se já existir
@@ -185,11 +190,12 @@ engine.execute("CREATE TABLE Produto ( \
 
 # Popula tabela
 engine.execute(sql)
-</code></pre>
+```
 
 * Gera tabela de Ordens
 
-<pre><code># Converte para SQL
+```python
+# Converte para SQL
 sql = para_sql(Ordem,"Ordem")
 
 # Apaga tabela se já existir
@@ -206,11 +212,12 @@ engine.execute("CREATE TABLE Ordem ( \
 
 # Popula tabela
 engine.execute(sql)
-</code></pre>
+```
 
 * Gera tabela de Entregas
 
-<pre><code># Converte para SQL
+```python
+# Converte para SQL
 sql = para_sql(Entrega,"Entrega")
 
 # Apaga tabela se já existir
@@ -226,7 +233,7 @@ engine.execute("CREATE TABLE Entrega ( \
 
 # Popula tabela
 engine.execute(sql)
-</code></pre>
+```
 
 ## 6. Consultas
 
