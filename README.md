@@ -30,11 +30,11 @@ Requisitos dos atributos das 5 entidades do mini mundo
 
 * __Restrições de Chaves:__
 
-![RI1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png#center)
+![RI1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png)
 
 * __Restrições de Integridade Referencial:__
 
-![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_2.png#center)
+![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_2.png)
 
 ## 3. Projeto Conceitual
 
