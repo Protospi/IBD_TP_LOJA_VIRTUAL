@@ -58,30 +58,31 @@ O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para c
 
 * Define Função para_sql e gera motor SGBD
 
-![Funçõa e Motor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/def_func_engine.png)
+![Funçõa e Motor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/def_func_engine.png)
+
 * Gera tabela de Clientes
 
-![Tabela de Clientes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_cliente.png)
+![Tabela de Clientes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_cliente.png)
 
 * Gera tabela de Sobrenomes
 
-![Tabela de Sobrenomes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_sobrenome.png)
+![Tabela de Sobrenomes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_sobrenome.png)
 
 * Gera tabela de Fornecedor
 
-![Tabela de Fornecedor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_fornecedor.png)
+![Tabela de Fornecedor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_fornecedor.png)
 
 * Gera tabela de Produtos
 
-![Tabela de Produtos](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_produto.png)
+![Tabela de Produtos](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_produto.png)
 
 * Gera tabela de Ordens
 
-![Tabela de Ordens](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_ordem.png)
+![Tabela de Ordens](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_ordem.png)
 
 * Gera tabela de Entregas
 
-![Tabela de Entregas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_entrega.png)
+![Tabela de Entregas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_entrega.png)
 
 ## 6. Consultas
 
@@ -89,43 +90,43 @@ Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gast
 
 * Consulta 1
 
-![Consulta 1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q1.png)
+![Consulta 1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q1.png)
 
 * Consulta 2
 
-![Consulta 2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q2.png)
+![Consulta 2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q2.png)
 
 * Consulta 3
 
-![Consulta 3](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q3.png)
+![Consulta 3](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q3.png)
 
 * Consulta 4
 
-![Consulta 4](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q4.png)
+![Consulta 4](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q4.png)
 
 * Consulta 5
 
-![Consulta 5](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q5.png)
+![Consulta 5](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q5.png)
 
 * Consulta 6
 
-![Consulta 6](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q6.png)
+![Consulta 6](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q6.png)
 
 * Consulta 7
 
-![Consulta 7](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q7.png)
+![Consulta 7](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q7.png)
 
 * Consulta 8
 
-![Consulta 8](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q8.png)
+![Consulta 8](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q8.png)
 
 * Consulta 9
 
-![Consulta 9](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q9.png)
+![Consulta 9](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q9.png)
 
 * Consulta 10
 
-![Consulta 10](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q10.png)
+![Consulta 10](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q10.png)
 
 
 ## 7. Tecnologias
