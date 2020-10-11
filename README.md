@@ -239,48 +239,140 @@ engine.execute(sql)
 
 Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gasto na execução de cada consulta. Para avaliar o tempo das consultas foi utilizado o comando %timeit da linguagem Python. Esse comando avalia a query fornecendo o tempo médio de resposta para 3 consultas.
 
-* Consulta 1
+* __Consulta 1 π(IDCliente,  Nome,   Email) (Cliente)__
 
-```python
-# π(IDCliente,   Nome,   Email) (Cliente)
+```python π(IDCliente,   Nome,   Email) (Cliente)
+# Executa Consulta 1 e avalia tempo
 %timeit pd.read_sql('SELECT * FROM Cliente', con = engine)
 ```
 
 ![Consulta 1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q1.png)
 
-* Consulta 2
+* __Consulta 2 π(IDProduto,   IDFornecedor,   Nome) (Produto)__
+
+```python
+# Executa Consulta 2 e avalia tempo
+%timeit pd.read_sql('SELECT * FROM Produto', con = engine)
+```
 
 ![Consulta 2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q2.png)
 
-* Consulta 3
+* __Consulta 3 Cliente  ⋈_(IDCliente=IDCliente)  Ordem__
+
+```python
+# Executa Consulta 3 e avalia tempo
+q3 = "SELECT c.ID_Cliente, c.Nome, c.Email, o.ID_Ordem, o.ID_Produto, o.Data \
+      FROM Cliente as c \
+      JOIN Ordem as o ON c.ID_Cliente = o.ID_Cliente"
+
+# Avalia tempo gasto na consulta para projetar a jução de Cliente e Ordem
+%timeit pd.read_sql(q3, con = engine)
+```
 
 ![Consulta 3](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q3.png)
 
-* Consulta 4
+* __Consulta 4 Produto  ⋈_(IDProduto=IDProduto)  Ordem__
+
+```python
+# Executa Consulta 4 e avalia tempo
+q4 = "SELECT p.ID_Produto, p.ID_Fornecedor, p.Nome as Nome_Produto, o.ID_Ordem, o.ID_Cliente, o.Data \
+      FROM Produto as p \
+      JOIN Ordem as o ON p.ID_Produto = o.ID_Produto"
+
+# Avalia tempo gasto Consulta para projetar a jução de Produto e Ordem
+%timeit pd.read_sql(q4, con = engine)
+```
 
 ![Consulta 4](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q4.png)
 
-* Consulta 5
+* __Consulta 5 Fornecedor  ⋈_(IDFornecedor=IDFornecedor)  Produto__
+
+```python
+# Executa Consulta 5 e avalia tempo
+q5 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Produto  \
+      FROM Fornecedor as f \
+      JOIN Produto as p ON f.ID_Fornecedor = p.ID_Fornecedor"
+
+# Avalia tempo gasto na consulta para projetar a junção de Fornecedor e Produto
+%timeit pd.read_sql(q5, con = engine)
+```
 
 ![Consulta 5](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q5.png)
 
-* Consulta 6
+* __Consulta 6 (Fornecedor  ⋈_(IDFornecedor=IDFornecedor)  Produto)⋈_(IDProduto=IDProduto)  Ordem__
+
+```python
+# Executa Consulta 6 e avalia tempo
+q6 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Produto, o.ID_Cliente, o.Data \
+      FROM Fornecedor as f \
+      JOIN Produto as p ON f.ID_Fornecedor = p.ID_Fornecedor \
+      JOIN Ordem as o ON p.ID_Produto = o.ID_Produto"
+
+# Consulta para projetar a junção de Fornecedor, Produto e Ordem
+%timeit pd.read_sql(q6, con = engine)
+```
 
 ![Consulta 6](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q6.png)
 
-* Consulta 7
+* __Consulta 7 (Produto  ⋈_(IDProduto=IDProduto)  Ordem)  ⋈_(IDCliente=IDCliente)  Cliente__
+
+```python
+# Executa Consulta 6 e avalia tempo
+q7 = "SELECT p.ID_Produto, p.ID_Fornecedor, c.Nome as Nome_Cliente, o.ID_Ordem, o.ID_Cliente, o.Data \
+      FROM Produto as p \
+      JOIN Ordem as o ON p.ID_Produto = o.ID_Produto \
+      JOIN Cliente as c ON o.ID_Cliente = c.ID_Cliente"
+
+# Avalia tempo gasto na consulta para projetar a jução de Produto, Ordem e Cliente
+%timeit pd.read_sql(q4, con = engine)
+```
 
 ![Consulta 7](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q7.png)
 
-* Consulta 8
+* __Consulta 8 (Produto  ⋈_(IDProduto=IDProduto)  Ordem)  ⋈_(IDFornecedor=IDFornecedor)  Fornecedor__
+
+```python
+# Executa Consulta 7 e avalia tempo
+q8 = "SELECT p.ID_Produto, p.ID_Fornecedor, f.Nome as Nome_Fornecedor, o.ID_Ordem, o.ID_Cliente, o.Data \
+      FROM Produto as p \
+      JOIN Ordem as o ON p.ID_Produto = o.ID_Produto \
+      JOIN Fornecedor as f ON p.ID_Fornecedor = p.ID_Fornecedor"
+
+# Avalia tempo gasto na consulta para projetar a jução de Produto, Ordem e Fornecedor
+%timeit pd.read_sql(q8, con = engine)
+```
 
 ![Consulta 8](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q8.png)
 
-* Consulta 9
+* __Consulta 9 π(IDCliente,   Nome,   Email) (Cliente)__
+
+```python
+# Executa Consulta 9 e avalia tempo
+q9 = "SELECT c.ID_Cliente, c.Nome, COUNT(o.ID_Ordem) as Quantidade_de_Ordens  \
+                         FROM Cliente as c \
+                         JOIN Ordem as o ON c.ID_Cliente = o.ID_Cliente \
+                         GROUP BY c.ID_Cliente \
+                         ORDER BY Quantidade_de_Ordens DESC"
+
+# Avalia tempo gasto na consulta para calcular a quantidade de ordens por cliente
+%timeit pd.read_sql(q9, con = engine)
+```
 
 ![Consulta 9](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q9.png)
 
-* Consulta 10
+* __Consulta 10 J_(COUNT IDProduto) (Fornecedor  ⋈_(IDFornecedor=IDFornecedor)  Produto)__
+
+```python
+# Executa Consulta 10 e avalia tempo
+q10 = "SELECT f.ID_Fornecedor, f.Nome as Nome_Fornecedor, COUNT(p.ID_Produto) as Quantidade_de_Produtos \
+       FROM Fornecedor as f \
+       JOIN Produto as p ON f.ID_Fornecedor = p.ID_Fornecedor \
+       GROUP BY f.ID_Fornecedor \
+       ORDER BY Quantidade_de_Produtos DESC"
+
+# Consulta para Calcular a quantidade de produtos por fornecedor
+%timeit pd.read_sql(q10, con = engine)
+```
 
 ![Consulta 10](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q10.png)
 
