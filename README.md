@@ -111,7 +111,7 @@ engine = create_engine('sqlite:///ibdtp.db', echo = False)
 
 * Gera tabela de Clientes
 
-<code><pre>
+<pre><code>
 # Converte para SQL
 sql = para_sql(Cliente,"Cliente")
 
@@ -132,7 +132,7 @@ engine.execute(sql)
 
 * Gera tabela de Sobrenomes
 
-<code><pre>
+<pre><code>
 # Converte para SQL
 sql = para_sql(Sobrenome,"Sobrenome")
 
@@ -152,7 +152,7 @@ engine.execute(sql)
 
 * Gera tabela de Fornecedor
 
-<code><pre>
+<pre><code>
 # Converte para SQL
 sql = para_sql(Fornecedor,"Fornecedor")
 
@@ -173,7 +173,7 @@ engine.execute(sql)
 
 * Gera tabela de Produtos
 
-<code><pre>
+<pre><code>
 # Converte para SQL
 sql = para_sql(Produto,"Produto")
 
@@ -194,7 +194,7 @@ engine.execute(sql)
 
 * Gera tabela de Ordens
 
-<code><pre>
+<pre><code>
 # Converte para SQL
 sql = para_sql(Ordem,"Ordem")
 
@@ -216,7 +216,7 @@ engine.execute(sql)
 
 * Gera tabela de Entregas
 
-<code><pre>
+<pre><code>
 # Converte para SQL
 sql = para_sql(Entrega,"Entrega")
 
