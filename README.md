@@ -58,35 +58,182 @@ O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para c
 
 * Gera Data Frames no Pandas
 
-![Tabelas Pandas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/tabelas_pandas.png)
+<pre><code> 
+# Declara data frame de Clientes com 500 clientes
+Cliente = pd.DataFrame({'ID_Cliente' : range(89),
+                       'Nome' : np.random.choice(Homens + Mulheres, 89).tolist(),
+                       'Email' : email_Cliente})
+
+# Declara data frame de Fornecedor com 50 Fornecedores
+Fornecedor = pd.DataFrame({'ID_Fornecedor' : range(9),
+                           'Nome' : Homens[90:99],
+                           'Email' : email_Fornecedor})
+
+# Declara data frame de Ordem com 5000 ordens
+Ordem = pd.DataFrame({'ID_Ordem' : range(5000),
+                      'ID_Cliente' : np.random.choice(range(500), 5000).tolist(),
+                      'ID_Produto' : np.random.choice(range(20), 5000).tolist(),
+                      'Data' : Data_Ordem})
+
+# Remove Horario da Coluna Data tablea Ordem
+Ordem['Data'] = [str(i) for i in pd.to_datetime(Ordem['Data']).dt.date]
+
+# Declara dataframe de Produto com 10 produtos
+Produto = pd.DataFrame({'ID_Produto' : range(21),
+                        'ID_Fornecedor' : np.random.choice(range(9), 21).tolist(),
+                        'Nome' : Produtos })
+
+# Declara data frame de entrega com 5000 entregas
+Entrega = pd.DataFrame({'ID_Entrega' : range(5000),
+                        'ID_Produto' : Ordem.ID_Produto,
+                        'Data' : Data_Entrega})
+
+# Remove Horario da Coluna Data tabela Entrega
+Entrega['Data'] = [str(i) for i in pd.to_datetime(Entrega['Data']).dt.date]
+
+# Declara Data Frame Sobrenome
+Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
+                          'Sobrenome' : Sobrenomes})		  
+</code></pre>
 
 * Define Função para_sql e gera motor SGBD
 
-![Funçõa e Motor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/def_func_engine.png)
+<pre><code> # Define Funcao
+def para_sql(df, nome):
+  rows = df.to_records(index=False)
+  values = ', '.join(map(str, rows))
+  sql = "INSERT INTO "+ nome + " VALUES {}".format(values)
+  return sql.replace("""\'""", """\"""")
+
+# Cria Motor de SQL 
+engine = create_engine('sqlite:///ibdtp.db', echo = False)
+</code></pre>
 
 * Gera tabela de Clientes
 
-![Tabela de Clientes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_cliente.png)
+<code><pre>
+# Converte para SQL
+sql = para_sql(Cliente,"Cliente")
+
+# Apaga tabela se já existir
+engine.execute("DROP TABLE IF EXISTS Cliente;")
+  
+# Gera tabela 
+engine.execute("CREATE TABLE Cliente ( \
+                ID_Cliente mediumint(8) NOT NULL,\
+                Nome varchar(255) default NULL,\
+                Email varchar(255) default NULL,\
+                PRIMARY KEY (ID_Cliente) \
+                );")
+
+# Popula tabela
+engine.execute(sql)
+</code></pre>
 
 * Gera tabela de Sobrenomes
 
-![Tabela de Sobrenomes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_sobrenome.png)
+<code><pre>
+# Converte para SQL
+sql = para_sql(Sobrenome,"Sobrenome")
+
+# Apaga tabela se já existir
+engine.execute("DROP TABLE IF EXISTS Sobrenome;")
+  
+# Gera tabela 
+engine.execute("CREATE TABLE Sobrenome ( \
+                ID_Cliente mediumint(8) NOT NULL, \
+                Sobrenome varchar(255) default NULL, \
+                PRIMARY KEY (ID_Cliente) \
+                );")
+
+# Popula tabela
+engine.execute(sql)
+</code></pre>
 
 * Gera tabela de Fornecedor
 
-![Tabela de Fornecedor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_fornecedor.png)
+<code><pre>
+# Converte para SQL
+sql = para_sql(Fornecedor,"Fornecedor")
+
+# Apaga tabela se já existir
+engine.execute("DROP TABLE IF EXISTS Fornecedor;")
+  
+# show the complete data 
+engine.execute("CREATE TABLE Fornecedor ( \
+                ID_Fornecedor  mediumint(8) NOT NULL, \
+                Nome varchar(255) default NULL, \
+                Email varchar(255) default NULL, \
+                PRIMARY KEY (ID_Fornecedor) \
+              );")
+
+# Popula tabela
+engine.execute(sql)
+</code></pre>
 
 * Gera tabela de Produtos
 
-![Tabela de Produtos](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_produto.png)
+<code><pre>
+# Converte para SQL
+sql = para_sql(Produto,"Produto")
+
+# Apaga tabela se já existir
+engine.execute("DROP TABLE IF EXISTS Produto;")
+  
+# show the complete data 
+engine.execute("CREATE TABLE Produto ( \
+                ID_Produto mediumint(8) NOT NULL, \
+                ID_Fornecedor mediumint, \
+                Nome varchar(255) default NULL, \
+                PRIMARY KEY (ID_Produto) \
+              );")
+
+# Popula tabela
+engine.execute(sql)
+</code></pre>
 
 * Gera tabela de Ordens
 
-![Tabela de Ordens](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_ordem.png)
+<code><pre>
+# Converte para SQL
+sql = para_sql(Ordem,"Ordem")
+
+# Apaga tabela se já existir
+engine.execute("DROP TABLE IF EXISTS Ordem;")
+  
+# show the complete data 
+engine.execute("CREATE TABLE Ordem ( \
+                ID_Ordem  mediumint(8) NOT NULL, \
+                ID_Cliente mediumint, \
+                ID_Produto mediumint, \
+                Data varchar(255) default NULL, \
+                PRIMARY KEY (ID_Ordem) \
+                );")
+
+# Popula tabela
+engine.execute(sql)
+</code></pre>
 
 * Gera tabela de Entregas
 
-![Tabela de Entregas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Tabelas/gera_entrega.png)
+<code><pre>
+# Converte para SQL
+sql = para_sql(Entrega,"Entrega")
+
+# Apaga tabela se já existir
+engine.execute("DROP TABLE IF EXISTS Entrega;")
+  
+# show the complete data 
+engine.execute("CREATE TABLE Entrega ( \
+                ID_Entrega mediumint(8) NOT NULL, \
+                ID_Produto mediumint, \
+                Data varchar(255), \
+                PRIMARY KEY (ID_Entrega) \
+                );")
+
+# Popula tabela
+engine.execute(sql)
+</code></pre>
 
 ## 6. Consultas
 
