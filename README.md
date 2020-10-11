@@ -75,7 +75,7 @@ Ordem = pd.DataFrame({'ID_Ordem' : range(5000),
                       'ID_Produto' : np.random.choice(range(20), 5000).tolist(),
                       'Data' : Data_Ordem})
 
-# Remove Horario da Coluna Data tablea Ordem
+# Remove Horario da Coluna Data da tabela Ordem
 Ordem['Data'] = [str(i) for i in pd.to_datetime(Ordem['Data']).dt.date]
 
 # Declara dataframe de Produto com 10 produtos
@@ -88,7 +88,7 @@ Entrega = pd.DataFrame({'ID_Entrega' : range(5000),
                         'ID_Produto' : Ordem.ID_Produto,
                         'Data' : Data_Entrega})
 
-# Remove Horario da Coluna Data tabela Entrega
+# Remove Horario da Coluna Data da tabela Entrega
 Entrega['Data'] = [str(i) for i in pd.to_datetime(Entrega['Data']).dt.date]
 
 # Declara Data Frame Sobrenome
