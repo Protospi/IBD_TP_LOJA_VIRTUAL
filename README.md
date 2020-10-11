@@ -237,7 +237,7 @@ engine.execute(sql)
 
 ## 6. Consultas
 
-Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gasto na execução de cada consulta. Para avaliar o tempo das consultas foi utilizado o comando %timeit da linguagem Python. Esse comando avalia a query fornecendo o tempo médio de resposta para 3 consultas.
+Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gasto na execução de cada consulta. Para avaliar o tempo das consultas foi utilizado o comando %timeit da linguagem Python. Esse comando avalia a query fornecendo o melhor tempo de 3.
 
 * __Consulta 1: π(IDCliente,  Nome,   Email) (Cliente)__
 
