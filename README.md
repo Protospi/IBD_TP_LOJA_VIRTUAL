@@ -7,7 +7,7 @@ Modelagem ER - Banco de Dados - Loja Virtual
 
 ### Resumo
 
-O projeto foi desenvolvido nas ferramentas Lucid Charts e Diagrams para a criação de diagramas e esquemas dos dados nas fases conceitual e logica. A parte da implementação Fisica foi desenvolvida na plataforma Google Colab utilizando a liguagem Python. Os nomes de Homens Mulheres e Produtos foram extraidos da web com os pacotes bs4 e requests. Os dados foram simulados com os pacotes numpy e random, armazenados em dataframes do pacote pandas e convertidos para SQL com o pacote sqlalchemy. Finalmente a função %timeit da liguagem Python foi utilizada para mensurar o desempenho das consultas.
+O projeto foi desenvolvido nas ferramentas Lucid Charts e Diagrams para a criação de diagramas e esquemas dos dados nas fases conceitual e logica. A parte da implementação Fisica foi desenvolvida na plataforma Google Colab utilizando a liguagem Python. Os nomes de Homens Mulheres e Produtos foram extraidos da web com os pacotes bs4 e requests. Os dados foram simulados com os pacotes numpy e random, armazenados em dataframes do pacote pandas e convertidos para SQL com o pacote sqlalchemy. Finalmente a função %timeit da liguagem Python foi utilizada para mensurar a performance das consultas.
 
 
 ## 1. Mini Mundo
@@ -30,11 +30,11 @@ Requisitos dos atributos das 5 entidades do mini mundo
 
 * __Restrições de Chaves:__
 
-![RI1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png)
+![RI1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png#center)
 
 * __Restrições de Integridade Referencial:__
 
-![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_2.png)
+![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_2.png#center)
 
 ## 3. Projeto Conceitual
 
