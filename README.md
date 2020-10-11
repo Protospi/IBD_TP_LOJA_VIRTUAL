@@ -58,7 +58,7 @@ O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para c
 
 * Gera Data Frames no Pandas
 
-<pre><code>#Declara data frame de Clientes com 500 clientes
+<pre><code># Declara data frame de Clientes com 500 clientes
 Cliente = pd.DataFrame({'ID_Cliente' : range(89),
                        'Nome' : np.random.choice(Homens + Mulheres, 89).tolist(),
                        'Email' : email_Cliente})
@@ -97,7 +97,7 @@ Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
 
 * Define Função para_sql e gera motor SGBD
 
-<pre><code>#Define Função
+<pre><code># Define Função
 def para_sql(df, nome):
   rows = df.to_records(index=False)
   values = ', '.join(map(str, rows))
@@ -110,7 +110,7 @@ engine = create_engine('sqlite:///ibdtp.db', echo = False)
 
 * Gera tabela de Clientes
 
-<pre><code>#Converte para SQL
+<pre><code># Converte para SQL
 sql = para_sql(Cliente,"Cliente")
 
 # Apaga tabela se já existir
@@ -130,7 +130,7 @@ engine.execute(sql)
 
 * Gera tabela de Sobrenomes
 
-<pre><code>#Converte para SQL
+<pre><code># Converte para SQL
 sql = para_sql(Sobrenome,"Sobrenome")
 
 # Apaga tabela se já existir
@@ -149,7 +149,7 @@ engine.execute(sql)
 
 * Gera tabela de Fornecedor
 
-<pre><code>#Converte para SQL
+<pre><code># Converte para SQL
 sql = para_sql(Fornecedor,"Fornecedor")
 
 # Apaga tabela se já existir
@@ -169,7 +169,7 @@ engine.execute(sql)
 
 * Gera tabela de Produtos
 
-<pre><code>#Converte para SQL
+<pre><code># Converte para SQL
 sql = para_sql(Produto,"Produto")
 
 # Apaga tabela se já existir
@@ -189,7 +189,7 @@ engine.execute(sql)
 
 * Gera tabela de Ordens
 
-<pre><code>#Converte para SQL
+<pre><code># Converte para SQL
 sql = para_sql(Ordem,"Ordem")
 
 # Apaga tabela se já existir
@@ -210,7 +210,7 @@ engine.execute(sql)
 
 * Gera tabela de Entregas
 
-<pre><code>#Converte para SQL
+<pre><code># Converte para SQL
 sql = para_sql(Entrega,"Entrega")
 
 # Apaga tabela se já existir
