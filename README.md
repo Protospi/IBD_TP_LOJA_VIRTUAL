@@ -241,6 +241,11 @@ Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gast
 
 * Consulta 1
 
+```python
+# π(IDCliente,   Nome,   Email) (Cliente)
+%timeit pd.read_sql('SELECT * FROM Cliente', con = engine)
+```
+
 ![Consulta 1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q1.png)
 
 * Consulta 2
