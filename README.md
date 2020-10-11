@@ -5,6 +5,10 @@ Modelagem ER - Banco de Dados - Loja Virtual
 
 <p align="center">O objetivo deste projeto é registrar as etapas do Trabalho Prático 2 da disciplina Introdução a Banco de dados 01/2020. O trabalho consiste na construção de um modelo de Banco de Dados do tipo Entidade Relacionamento.</p>
 
+### Resumo
+
+O projeto foi desenvolvido nas ferramentas Lucid Charts e Diagrams para a criação de diagramas e esquemas dos dados nas fases conceitual e logica. A parte da implementação Fisica foi desenvolvida na plataforma Google Colab utilizando a liguagem Python. Os nomes de Homens Mulheres e Produtos foram extraidos da web com os pacotes bs4 e requests. Os dados foram simulados com os pacotes numpy e random, armazenados em dataframes do pacote pandas e convertidos para SQL com o pacote sqlalchemy. Finalmente a função %timeit da liguagem Python foi utilizada para mensurar o desempenho das consultas.
+
 
 ## 1. Mini Mundo
 
@@ -15,7 +19,6 @@ O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda
 * Fornecedores de produtos com código de identificador único para cada fornecedor, Nome do fornecedor e endereço eletrônico do fornecedor.
 * Entregas dos produtos com código único de entrega, código identificador do Produto e Data da Entrega.
 
-
 ## 2. Análise de Requisitos
 
 Requisitos dos atributos das 5 entidades do mini mundo
@@ -24,7 +27,6 @@ Requisitos dos atributos das 5 entidades do mini mundo
 * Produto (ID_Produto(nn), ID_Fornecedor(nn), Nome)
 * Fornecedor (ID_Fornecedor(nn), Nome, Email)
 * Entrega (ID_Entrega(nn), ID_Produto(nn), Data)
-
 
 Restrições de Chaves:
 
@@ -46,23 +48,89 @@ Mapa do Modelo Lógico
 
 ![Modelo Logico](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelo_Logico.png)
 
+Restrições das Relações Projeto Lógico
+
+![Restrições Lógicas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/restricoes_projeto_logico.png)
+
 ## 5. Projeto Físico
 
-O sistema de SGBD escolhido para alocar fisicamente os dados o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy.
+O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python.
+
+* Define Função para_sql e gera motor SGBD
+
+![Funçõa e Motor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/def_func_engine.png)
+* Gera tabela de Clientes
+
+![Tabela de Clientes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_cliente.png)
+
+* Gera tabela de Sobrenomes
+
+![Tabela de Sobrenomes](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_sobrenome.png)
+
+* Gera tabela de Fornecedor
+
+![Tabela de Fornecedor](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_fornecedor.png)
+
+* Gera tabela de Produtos
+
+![Tabela de Produtos](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_produto.png)
+
+* Gera tabela de Ordens
+
+![Tabela de Ordens](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_ordem.png)
+
+* Gera tabela de Entregas
+
+![Tabela de Entregas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/gera_entrega.png)
 
 ## 6. Consultas
 
-Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gasto na execução de cada consulta.
+Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gasto na execução de cada consulta. Para avaliar o tempo das consultas foi utilizado o comando %timeit da linguagem Python. Esse comando avalia a query fornecendo o tempo médio de resposta para 3 consultas.
 
-Exemplo de Consulta
+* Consulta 1
 
-![Consulta 10](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consulta_10.png)
+![Consulta 1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q1.png)
 
-Para avaliar o tempo das consultas foi utilizado o comando %timeit da linguagem Python. Esse comando avalia a query fornecendo o tempo médio de resposta para 3 consultas.
+* Consulta 2
+
+![Consulta 2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q2.png)
+
+* Consulta 3
+
+![Consulta 3](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q3.png)
+
+* Consulta 4
+
+![Consulta 4](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q4.png)
+
+* Consulta 5
+
+![Consulta 5](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q5.png)
+
+* Consulta 6
+
+![Consulta 6](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q6.png)
+
+* Consulta 7
+
+![Consulta 7](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q7.png)
+
+* Consulta 8
+
+![Consulta 8](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q8.png)
+
+* Consulta 9
+
+![Consulta 9](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q9.png)
+
+* Consulta 10
+
+![Consulta 10](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/q10.png)
+
 
 ## 7. Tecnologias
 
-As tecnologias utilizadas foram:
+Tecnologias utilizadas:
 * <a href = "https://colab.research.google.com/drive/1PeIUI6mdR7XZz9lMiVm0VKuIou6FKXZE#scrollTo=1bgkBvAGpI4U&uniqifier=1"> Colab .ipynb </a>
 * <a href = "https://lucid.app/lucidchart/"> LucidCharts </a>
 * <a href = "https://app.diagrams.net/"> Diagrams </a>
