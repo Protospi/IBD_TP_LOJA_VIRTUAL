@@ -4,8 +4,9 @@
 #### Aluno: Pedro Ladeira Loes
 
 ### Resumo
-
+<p align="justify">
 O objetivo deste projeto foi simular dados e desenvolver um Modelo ER, um modelo Logico e um SGBD para a aplicação Loja Virtual considerando diretrizes de integridade referencial e lógica. O projeto foi desenvolvido nas ferramentas Lucid Charts e Diagrams para a criação de diagramas e esquemas dos dados nas fases conceitual e logica. A parte da implementação Fisica foi desenvolvida na ferramenta Google Colab utilizando a liguagem Python. Os nomes de Homens Mulheres e Produtos foram extraidos da web com os pacotes bs4 e requests. Os dados foram simulados com os pacotes numpy e random, armazenados em dataframes do pacote pandas e convertidos para SQL com o pacote sqlalchemy. Finalmente a função %timeit da liguagem Python foi utilizada para mensurar a performance das consultas.
+</p>
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vZ0fRxiSPFuvCjG4Hm_1_MRpO4xVDNWf#scrollTo=7k8FQmOEstmc)
 
