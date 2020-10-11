@@ -30,27 +30,27 @@ Requisitos dos atributos das 5 entidades do mini mundo
 
 Restrições de Chaves:
 
-![RI1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Restricao_Integridade_1.png)
+![RI1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png)
 
 Restrições de Integridade Referencial:
 
-![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Restricao_Integridade_2.png)
+![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_2.png)
 
 ## 3. Projeto Conceitual
 
 Mapa do Modelo Entidade Relacionamento:
 
-![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelo_ER_1.png)
+![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Modelo_ER_1.png)
 
 ## 4. Projeto Lógico
 
 Mapa do Modelo Lógico
 
-![Modelo Logico](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelo_Logico.png)
+![Modelo Logico](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Modelo_Logico.png)
 
 Restrições das Relações Projeto Lógico
 
-![Restrições Lógicas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/restricoes_projeto_logico.png)
+![Restrições Lógicas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/restricoes_projeto_logico.png)
 
 ## 5. Projeto Físico
 
