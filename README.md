@@ -1,7 +1,7 @@
-# IBD_TP_LOJA_VIRTUAL
-Modelagem ER - Banco de Dados - Loja Virtual
-Introdução a Bancos de Dados-UFMG
-Aluno: Pedro Ladeira Loes
+# LOJA_VIRTUAL
+#### Modelagem ER - Banco de Dados - Loja Virtual
+#### Introdução a Bancos de Dados-UFMG
+#### Aluno: Pedro Ladeira Loes
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vZ0fRxiSPFuvCjG4Hm_1_MRpO4xVDNWf#scrollTo=7k8FQmOEstmc)
 
