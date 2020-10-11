@@ -239,7 +239,7 @@ engine.execute(sql)
 
 Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gasto na execução de cada consulta. Para avaliar o tempo das consultas foi utilizado o comando %timeit da linguagem Python. Esse comando avalia a query fornecendo o tempo médio de resposta para 3 consultas.
 
-* __Consulta 1 π(IDCliente,  Nome,   Email) (Cliente)__
+* __Consulta 1: π(IDCliente,  Nome,   Email) (Cliente)__
 
 ```python π(IDCliente,   Nome,   Email) (Cliente)
 # Executa Consulta 1 e avalia tempo
@@ -248,7 +248,7 @@ Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gast
 
 ![Consulta 1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q1.png)
 
-* __Consulta 2 π(IDProduto,   IDFornecedor,   Nome) (Produto)__
+* __Consulta 2: π(IDProduto,   IDFornecedor,   Nome) (Produto)__
 
 ```python
 # Executa Consulta 2 e avalia tempo
@@ -257,7 +257,7 @@ Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gast
 
 ![Consulta 2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q2.png)
 
-* __Consulta 3 Cliente  ⋈_(IDCliente=IDCliente)  Ordem__
+* __Consulta 3: Cliente  ⋈ (IDCliente=IDCliente)  Ordem__
 
 ```python
 # Executa Consulta 3 e avalia tempo
@@ -271,7 +271,7 @@ q3 = "SELECT c.ID_Cliente, c.Nome, c.Email, o.ID_Ordem, o.ID_Produto, o.Data \
 
 ![Consulta 3](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q3.png)
 
-* __Consulta 4 Produto  ⋈_(IDProduto=IDProduto)  Ordem__
+* __Consulta 4: Produto  ⋈ (IDProduto=IDProduto)  Ordem__
 
 ```python
 # Executa Consulta 4 e avalia tempo
@@ -285,7 +285,7 @@ q4 = "SELECT p.ID_Produto, p.ID_Fornecedor, p.Nome as Nome_Produto, o.ID_Ordem, 
 
 ![Consulta 4](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q4.png)
 
-* __Consulta 5 Fornecedor  ⋈_(IDFornecedor=IDFornecedor)  Produto__
+* __Consulta 5: Fornecedor  ⋈ (IDFornecedor=IDFornecedor)  Produto__
 
 ```python
 # Executa Consulta 5 e avalia tempo
@@ -299,7 +299,7 @@ q5 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Prod
 
 ![Consulta 5](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q5.png)
 
-* __Consulta 6 (Fornecedor  ⋈_(IDFornecedor=IDFornecedor)  Produto)⋈_(IDProduto=IDProduto)  Ordem__
+* __Consulta 6: (Fornecedor  ⋈ (IDFornecedor=IDFornecedor)  Produto)⋈ (IDProduto=IDProduto)  Ordem__
 
 ```python
 # Executa Consulta 6 e avalia tempo
@@ -314,7 +314,7 @@ q6 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Prod
 
 ![Consulta 6](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q6.png)
 
-* __Consulta 7 (Produto  ⋈_(IDProduto=IDProduto)  Ordem)  ⋈_(IDCliente=IDCliente)  Cliente__
+* __Consulta 7: (Produto  ⋈ (IDProduto=IDProduto)  Ordem)  ⋈ (IDCliente=IDCliente)  Cliente__
 
 ```python
 # Executa Consulta 6 e avalia tempo
@@ -329,7 +329,7 @@ q7 = "SELECT p.ID_Produto, p.ID_Fornecedor, c.Nome as Nome_Cliente, o.ID_Ordem, 
 
 ![Consulta 7](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q7.png)
 
-* __Consulta 8 (Produto  ⋈_(IDProduto=IDProduto)  Ordem)  ⋈_(IDFornecedor=IDFornecedor)  Fornecedor__
+* __Consulta 8: (Produto  ⋈ (IDProduto=IDProduto)  Ordem)  ⋈ (IDFornecedor=IDFornecedor)  Fornecedor__
 
 ```python
 # Executa Consulta 7 e avalia tempo
@@ -344,7 +344,7 @@ q8 = "SELECT p.ID_Produto, p.ID_Fornecedor, f.Nome as Nome_Fornecedor, o.ID_Orde
 
 ![Consulta 8](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q8.png)
 
-* __Consulta 9 π(IDCliente,   Nome,   Email) (Cliente)__
+* __Consulta 9:  J (COUNT IDCliente) (Cliente  ⋈ (IDCliente=IDCliente)  Ordem)__ 
 
 ```python
 # Executa Consulta 9 e avalia tempo
@@ -360,7 +360,7 @@ q9 = "SELECT c.ID_Cliente, c.Nome, COUNT(o.ID_Ordem) as Quantidade_de_Ordens  \
 
 ![Consulta 9](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q9.png)
 
-* __Consulta 10 J_(COUNT IDProduto) (Fornecedor  ⋈_(IDFornecedor=IDFornecedor)  Produto)__
+* __Consulta 10: J (COUNT IDProduto) (Fornecedor  ⋈ (IDFornecedor=IDFornecedor)  Produto)__
 
 ```python
 # Executa Consulta 10 e avalia tempo
