@@ -28,11 +28,11 @@ Requisitos dos atributos das 5 entidades do mini mundo
 * Fornecedor (ID_Fornecedor(nn), Nome, Email)
 * Entrega (ID_Entrega(nn), ID_Produto(nn), Data)
 
-Restrições de Chaves:
+* __Restrições de Chaves:__
 
 ![RI1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png)
 
-Restrições de Integridade Referencial:
+* __Restrições de Integridade Referencial:__
 
 ![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_2.png)
 
@@ -48,7 +48,7 @@ Mapa do Modelo Lógico
 
 ![Modelo Logico](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Modelo_Logico.png)
 
-Restrições das Relações Projeto Lógico
+* __Restrições das Relações Projeto Lógico__
 
 ![Restrições Lógicas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/restricoes_projeto_logico.png)
 
@@ -56,7 +56,7 @@ Restrições das Relações Projeto Lógico
 
 O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python.
 
-* Gera Data Frames no Pandas
+* __Gera Data Frames no Pandas__
 
 ```python
 # Declara data frame de Clientes com 500 clientes
@@ -96,7 +96,7 @@ Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
                           'Sobrenome' : Sobrenomes})		  
 ```
 
-* Define Função para_sql e gera motor SGBD
+* __Define Função para_sql e gera motor SGBD__
 
 ```python
 # Define Função
@@ -110,7 +110,7 @@ def para_sql(df, nome):
 engine = create_engine('sqlite:///ibdtp.db', echo = False)
 ```
 
-* Gera tabela de Clientes
+* __Gera tabela de Clientes__
 
 ```python
 # Converte para SQL
@@ -131,7 +131,7 @@ engine.execute("CREATE TABLE Cliente ( \
 engine.execute(sql)
 ```
 
-* Gera tabela de Sobrenomes
+* __Gera tabela de Sobrenomes__
 
 ```python
 # Converte para SQL
@@ -151,7 +151,7 @@ engine.execute("CREATE TABLE Sobrenome ( \
 engine.execute(sql)
 ```
 
-* Gera tabela de Fornecedor
+* __Gera tabela de Fornecedor__
 
 ```python# Converte para SQL
 sql = para_sql(Fornecedor,"Fornecedor")
@@ -171,7 +171,7 @@ engine.execute("CREATE TABLE Fornecedor ( \
 engine.execute(sql)
 ```
 
-* Gera tabela de Produtos
+* __Gera tabela de Produtos__
 
 ```python
 # Converte para SQL
@@ -192,7 +192,7 @@ engine.execute("CREATE TABLE Produto ( \
 engine.execute(sql)
 ```
 
-* Gera tabela de Ordens
+* __Gera tabela de Ordens__
 
 ```python
 # Converte para SQL
@@ -214,7 +214,7 @@ engine.execute("CREATE TABLE Ordem ( \
 engine.execute(sql)
 ```
 
-* Gera tabela de Entregas
+* __Gera tabela de Entregas__
 
 ```python
 # Converte para SQL
