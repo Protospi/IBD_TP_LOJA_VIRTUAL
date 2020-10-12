@@ -56,6 +56,20 @@ Mapa do Modelo Lógico
 
 O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python.
 
+* __Pacotes Utilizados__
+
+```python
+# Carrega Pacotes
+import requests
+from bs4 import BeautifulSoup
+import numpy as np
+import pandas as pd
+import datetime
+import random
+from unidecode import unidecode
+from sqlalchemy import create_engine 
+```
+
 * __Gera Data Frames no Pandas__
 
 ```python
