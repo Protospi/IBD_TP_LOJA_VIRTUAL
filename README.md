@@ -54,7 +54,7 @@ Mapa do Modelo Lógico
 
 ## 5. Projeto Físico
 
-O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram scrapiados da web com o pacote bs4 e requests utilizando a função BeautifulSoup. Os emails, data da ordem e da entrega foram gerados com função padrão do python e o pacote datetime. 
+O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram extraídos da web com o pacote bs4 e requests utilizando a função BeautifulSoup. Os emails, data da ordem e da entrega foram gerados com função padrão do python e o pacote datetime. O pacote random foi utilizado para randomizar os nomes de Clientes e Produtos nas Ordens. As tabelas foram compostas de 89 clientes, 9 fornecedores, 21 produtos, 5000 ordens e 5000 entregas. 
 
 * __Pacotes Utilizados__
 
@@ -191,12 +191,12 @@ Data_Entrega = [data + datetime.timedelta(days=random.randrange(dias_entre_datas
 * __Gera Data Frames no Pandas__
 
 ```python
-# Declara data frame de Clientes com 500 clientes
+# Declara data frame de Clientes com 89 clientes
 Cliente = pd.DataFrame({'ID_Cliente' : range(89),
                        'Nome' : np.random.choice(Homens + Mulheres, 89).tolist(),
                        'Email' : email_Cliente})
 
-# Declara data frame de Fornecedor com 50 Fornecedores
+# Declara data frame de Fornecedor com 9 Fornecedores
 Fornecedor = pd.DataFrame({'ID_Fornecedor' : range(9),
                            'Nome' : Homens[90:99],
                            'Email' : email_Fornecedor})
@@ -210,7 +210,7 @@ Ordem = pd.DataFrame({'ID_Ordem' : range(5000),
 # Remove Horario da Coluna Data da tabela Ordem
 Ordem['Data'] = [str(i) for i in pd.to_datetime(Ordem['Data']).dt.date]
 
-# Declara dataframe de Produto com 10 produtos
+# Declara dataframe de Produto com 21 produtos
 Produto = pd.DataFrame({'ID_Produto' : range(21),
                         'ID_Fornecedor' : np.random.choice(range(9), 21).tolist(),
                         'Nome' : Produtos })
@@ -231,6 +231,7 @@ Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
 * __Define Função para_sql e gera motor SGBD__
 
 ```python
+
 # Define Função
 def para_sql(df, nome):
   rows = df.to_records(index=False)
@@ -240,6 +241,7 @@ def para_sql(df, nome):
 
 # Cria Motor de SQL 
 engine = create_engine('sqlite:///ibdtp.db', echo = False)
+
 ```
 
 * __Gera tabela de Clientes__
@@ -251,7 +253,7 @@ sql = para_sql(Cliente,"Cliente")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Cliente;")
   
-# Gera tabela 
+# Gera tabela de Clientes
 engine.execute("CREATE TABLE Cliente ( \
                 ID_Cliente mediumint(8) NOT NULL,\
                 Nome varchar(255) default NULL,\
@@ -272,7 +274,7 @@ sql = para_sql(Sobrenome,"Sobrenome")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Sobrenome;")
   
-# Gera tabela 
+# Gera tabela de Sobrenomes
 engine.execute("CREATE TABLE Sobrenome ( \
                 ID_Cliente mediumint(8) NOT NULL, \
                 Sobrenome varchar(255) default NULL, \
@@ -291,7 +293,7 @@ sql = para_sql(Fornecedor,"Fornecedor")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Fornecedor;")
   
-# show the complete data 
+# Gera tabela de Fornecedor
 engine.execute("CREATE TABLE Fornecedor ( \
                 ID_Fornecedor  mediumint(8) NOT NULL, \
                 Nome varchar(255) default NULL, \
@@ -312,7 +314,7 @@ sql = para_sql(Produto,"Produto")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Produto;")
   
-# show the complete data 
+# Gera Tabela Produto
 engine.execute("CREATE TABLE Produto ( \
                 ID_Produto mediumint(8) NOT NULL, \
                 ID_Fornecedor mediumint, \
@@ -333,7 +335,7 @@ sql = para_sql(Ordem,"Ordem")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Ordem;")
   
-# show the complete data 
+# Gera tabela de Ordem 
 engine.execute("CREATE TABLE Ordem ( \
                 ID_Ordem  mediumint(8) NOT NULL, \
                 ID_Cliente mediumint, \
@@ -355,7 +357,7 @@ sql = para_sql(Entrega,"Entrega")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Entrega;")
   
-# show the complete data 
+# Gera tabela de Entrega 
 engine.execute("CREATE TABLE Entrega ( \
                 ID_Entrega mediumint(8) NOT NULL, \
                 ID_Produto mediumint, \
@@ -373,7 +375,7 @@ Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gast
 
 * __Consulta 1: π(IDCliente,  Nome,   Email) (Cliente)__
 
-```python π(IDCliente,   Nome,   Email) (Cliente)
+```python 
 # Executa Consulta 1 e avalia tempo
 %timeit pd.read_sql('SELECT * FROM Cliente', con = engine)
 ```
