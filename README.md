@@ -54,7 +54,7 @@ Mapa do Modelo Lógico
 
 ## 5. Projeto Físico
 
-O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram extraídos da web com o pacote bs4 e requests utilizando a função BeautifulSoup. Os emails, data da ordem e da entrega foram gerados com função padrão do python e o pacote datetime. O pacote random foi utilizado para randomizar os nomes de Clientes e Produtos nas Ordens. As tabelas foram compostas de 89 clientes, 9 fornecedores, 21 produtos, 5000 ordens e 5000 entregas. 
+O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram extraídos da web com o pacote bs4 e requests utilizando a função BeautifulSoup. Os emails, data da ordem e da entrega foram gerados com função padrão do python e o pacote datetime. O pacote random foi utilizado para randomizar os nomes de Clientes e Produtos nas Ordens. As tabelas foram compostas de 89 clientes, 9 fornecedores, 21 produtos, 5000 ordens e 5000 entregas. Os dados foram gerados como data frames do pacote pandas e transformados em strings no formato adequado para criação de tabelas em SQL.
 
 * __Pacotes Utilizados__
 
@@ -70,7 +70,7 @@ from unidecode import unidecode
 from sqlalchemy import create_engine 
 ```
 
-* Scrap Sobrenomes
+* __Extração de Sobrenomes__
 
 ```python
 # Define Url de Sobrenomes
@@ -86,7 +86,7 @@ soup = BeautifulSoup(reqs.text, 'lxml')
 Sobrenomes = np.random.choice([tag.text for tag in soup.find_all("ol")][0].split(), 90)
 ```
 
-* Scrap Nome Homens
+* __Extração do Nome de Homens__
 
 ```python
 
@@ -104,7 +104,7 @@ Homens = [tag.text for tag in soup.find_all("ul")][1].split()
 
 ```
 
-* Scrap Nome de Mulheres
+* __Extração do Nome de Mulheres__
 
 ```python
 
@@ -122,7 +122,7 @@ Mulheres = [tag.text for tag in soup.find_all("ul")][1].split()
 
 ```
 
-* Scrap Nome de Produtos
+* __Extração do Nome de Produtos__
 
 ```python
 
@@ -158,7 +158,7 @@ Produtos = Produtos_Celulares + Produtos_Desktop
 
 ```
 
-* Gera Emails e Datas de Ordem e Entrega
+* __Gera Emails e Datas de Ordem e Entrega__
 
 ```python
 
@@ -188,7 +188,7 @@ Data_Ordem = pd.date_range(start = '2020-01-01', end = '2020-10-01', periods=500
 Data_Entrega = [data + datetime.timedelta(days=random.randrange(dias_entre_datas)) for data in Data_Ordem]
 ```
 
-* __Gera Data Frames no Pandas__
+* __Gera Data Frames do Pandas__
 
 ```python
 # Declara data frame de Clientes com 89 clientes
@@ -285,7 +285,7 @@ engine.execute("CREATE TABLE Sobrenome ( \
 engine.execute(sql)
 ```
 
-* __Gera tabela de Fornecedor__
+* __Gera tabela de Fornecedores__
 
 ```python# Converte para SQL
 sql = para_sql(Fornecedor,"Fornecedor")
