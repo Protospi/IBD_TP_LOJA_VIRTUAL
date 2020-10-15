@@ -54,7 +54,7 @@ Mapa do Modelo Lógico
 
 ## 5. Projeto Físico
 
-O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram scrapiados da web com o pacote bs4 utilizando a função BeautifulSoup.
+O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram scrapiados da web com o pacote bs4 e requests utilizando a função BeautifulSoup. Os emails, data da ordem e da entrega foram gerados com função padrão do python e o pacote datetime. 
 
 * __Pacotes Utilizados__
 
@@ -156,6 +156,36 @@ Produtos_Desktop = list(map(lambda w: w.split(". ", 1)[1], Produtos_Desktop))
 # Concatena Produtos
 Produtos = Produtos_Celulares + Produtos_Desktop
 
+```
+
+* Gera Emails e Datas de Ordem e Entrega
+
+```python
+
+# Define Encoding do texto
+encoding = "utf-8"
+
+# Declara email de Clientes
+email_Cliente = [unidecode(i) + j for i, j in zip(list(Homens[0:89]), np.random.choice(["@gmail.com","@yahoo.com","@bh.com"], 90).tolist())] 
+
+# Email de Fornecedor
+email_Fornecedor = [unidecode(i) + j for i, j in zip(list(Homens[90:99]), np.random.choice(["@gmail.com","@yahoo.com","@bh.com"], 90).tolist())]
+
+# Data de Inicio
+inicio = datetime.date(2020, 1, 1)
+fim = datetime.date(2020, 10, 1)
+
+# Calcula Data
+tempo_entre_datas = fim - inicio
+dias_entre_datas = tempo_entre_datas.days
+dias_aleatorios = random.randrange(dias_entre_datas)
+data_aleatoria = inicio + datetime.timedelta(days=dias_aleatorios)
+
+# Data Ordem
+Data_Ordem = pd.date_range(start = '2020-01-01', end = '2020-10-01', periods=5000)
+
+# Data Entrega
+Data_Entrega = [data + datetime.timedelta(days=random.randrange(dias_entre_datas)) for data in Data_Ordem]
 ```
 
 * __Gera Data Frames no Pandas__
