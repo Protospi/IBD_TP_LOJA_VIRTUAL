@@ -70,6 +70,94 @@ from unidecode import unidecode
 from sqlalchemy import create_engine 
 ```
 
+* Scrap Sobrenomes
+
+```python
+# Define Url de Sobrenomes
+url = 'https://www.procob.com/os-sobrenomes-mais-comuns-do-brasil/'
+ 
+# Conecta com URL
+reqs = requests.get(url)
+ 
+# Extrai informações de lista ordenada
+soup = BeautifulSoup(reqs.text, 'lxml')
+ 
+# Define Sobrenomes
+Sobrenomes = np.random.choice([tag.text for tag in soup.find_all("ol")][0].split(), 90)
+```
+
+* Scrap Nome Homens
+
+```python
+
+# Define Url de Homens
+url2 = 'https://www.minhavida.com.br/familia/materias/35919-100-nomes-para-meninos-mais-comuns-confira-lista'
+
+# Conecta com URL
+reqs = requests.get(url2)
+
+# Extrai informações de lista ordenada
+soup = BeautifulSoup(reqs.text, 'lxml')
+
+# Define Sobrenomes
+Homens = [tag.text for tag in soup.find_all("ul")][1].split()
+
+```
+
+* Scrap Nome de Mulheres
+
+```python
+
+# Define Url de Mulheres
+url3 = 'https://www.minhavida.com.br/familia/materias/35925-100-nomes-para-meninas-mais-comuns-confira-lista'
+
+# Conecta com URL
+reqs = requests.get(url3)
+
+# Extrai informações de lista ordenada
+soup = BeautifulSoup(reqs.text, 'lxml')
+
+# Define Sobrenomes
+Mulheres = [tag.text for tag in soup.find_all("ul")][1].split()
+
+```
+
+* Scrap Nome de Produtos
+
+```python
+
+# Define Url de Melhores 10 celulares
+url4 = 'https://mobizoo.com.br/opiniao/celulares-mais-vendidos/'
+
+# Conecta com URL
+reqs = requests.get(url4)
+
+# Extrai informações da url
+soup = BeautifulSoup(reqs.text, 'lxml')
+
+# Define Produtos de Celulares
+Produtos_Celulares = [tag.text for tag in soup.find_all("th")][5::4]
+
+# Define Url de Melhores Desktops
+url5 = 'https://spy.com/articles/gadgets/electronics/best-desktop-computers-reviews-247841/'
+
+# Conecta com URL
+reqs = requests.get(url5)
+
+# Extrai informações da url
+soup = BeautifulSoup(reqs.text, 'lxml')
+
+# Define Variavel auxiliar com titulos completos com categoria
+Produtos_Desktop = [tag.text for tag in soup.find_all("h2")][:11]
+
+# Define Produtos Desktops 
+Produtos_Desktop = list(map(lambda w: w.split(". ", 1)[1], Produtos_Desktop))
+
+# Concatena Produtos
+Produtos = Produtos_Celulares + Produtos_Desktop
+
+```
+
 * __Gera Data Frames no Pandas__
 
 ```python
