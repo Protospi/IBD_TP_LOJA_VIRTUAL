@@ -54,7 +54,7 @@ Mapa do Modelo Lógico
 
 ## 5. Projeto Físico
 
-O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python.
+O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram scrapiados da web com o pacote bs4 utilizando a função BeautifulSoup.
 
 * __Pacotes Utilizados__
 
