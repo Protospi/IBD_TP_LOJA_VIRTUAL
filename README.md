@@ -21,12 +21,12 @@ O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda
 
 ## 2. Análise de Requisitos
 
-Requisitos dos atributos das 5 entidades do mini mundo
-* Cliente (ID_Cliente(nn), Nome, Email)
-* Ordem (ID_Ordem(nn), ID_Produto(nn), Data)
-* Produto (ID_Produto(nn), ID_Fornecedor(nn), Nome)
-* Fornecedor (ID_Fornecedor(nn), Nome, Email)
-* Entrega (ID_Entrega(nn), ID_Produto(nn), Data)
+* Requisitos dos atributos das 5 entidades do mini mundo
+	* Cliente (ID_Cliente(nn), Nome, Email)
+	* Ordem (ID_Ordem(nn), ID_Produto(nn), Data)
+	* Produto (ID_Produto(nn), ID_Fornecedor(nn), Nome)
+	* Fornecedor (ID_Fornecedor(nn), Nome, Email)
+	* Entrega (ID_Entrega(nn), ID_Produto(nn), Data)
 
 * __Restrições de Chaves:__
 
