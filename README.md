@@ -54,11 +54,12 @@ Mapa do Modelo Lógico
 
 ## 5. Projeto Físico
 
-O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram extraídos da web com o pacote bs4 e requests utilizando a função BeautifulSoup. Os emails, data da ordem e da entrega foram gerados com função padrão do python e o pacote datetime. O pacote random foi utilizado para randomizar os nomes de Clientes e Produtos nas Ordens. As tabelas foram compostas de 89 clientes, 9 fornecedores, 21 produtos, 5000 ordens e 5000 entregas. Os dados foram gerados como data frames do pacote pandas e transformados em strings no formato adequado para criação de tabelas em SQL.
+O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para criar o motor de buscas foi utilizada a função create_engine da biblioteca sqlalchemy da linguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram extraídos da web com o pacote bs4 e requests utilizando a função BeautifulSoup. Os emails, data da ordem e da entrega foram gerados com funções padrão da linguagem python e o pacote datetime. O pacote random foi utilizado para randomizar os nomes de Clientes e Produtos nas Ordens. As tabelas foram compostas de 89 clientes, 9 fornecedores, 21 produtos, 5000 ordens e 5000 entregas. Os dados foram gerados como data frames do pacote pandas e transformados em strings no formato adequado para criação de tabelas em SQL.
 
 * __Pacotes Utilizados__
 
 ```python
+
 # Carrega Pacotes
 import requests
 from bs4 import BeautifulSoup
@@ -68,6 +69,7 @@ import datetime
 import random
 from unidecode import unidecode
 from sqlalchemy import create_engine 
+
 ```
 
 * __Extração de Sobrenomes__
