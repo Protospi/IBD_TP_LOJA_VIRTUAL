@@ -193,12 +193,13 @@ Data_Entrega = [data + datetime.timedelta(days=random.randrange(dias_entre_datas
 * __Gera Data Frames do Pandas__
 
 ```python
-# Declara data frame de Clientes com 89 clientes
+# Declara data frame de Clientes com 500 clientes
 Cliente = pd.DataFrame({'ID_Cliente' : range(89),
                        'Nome' : np.random.choice(Homens + Mulheres, 89).tolist(),
                        'Email' : email_Cliente})
 
-# Declara data frame de Fornecedor com 9 Fornecedores
+
+# Declara data frame de Fornecedor com 50 Fornecedores
 Fornecedor = pd.DataFrame({'ID_Fornecedor' : range(9),
                            'Nome' : Homens[90:99],
                            'Email' : email_Fornecedor})
@@ -207,27 +208,34 @@ Fornecedor = pd.DataFrame({'ID_Fornecedor' : range(9),
 Ordem = pd.DataFrame({'ID_Ordem' : range(5000),
                       'ID_Cliente' : np.random.choice(range(500), 5000).tolist(),
                       'ID_Produto' : np.random.choice(range(20), 5000).tolist(),
-                      'Data' : Data_Ordem})
+                      'Data' : Data_Ordem,
+                      'Nota_Fiscal' :  range(1000,6000)
+                       })
 
-# Remove Horario da Coluna Data da tabela Ordem
+# Remove Horario da Coluna Data tablea Ordem
 Ordem['Data'] = [str(i) for i in pd.to_datetime(Ordem['Data']).dt.date]
 
-# Declara dataframe de Produto com 21 produtos
+# Declara dataframe de Produto com 10 produtos
 Produto = pd.DataFrame({'ID_Produto' : range(21),
                         'ID_Fornecedor' : np.random.choice(range(9), 21).tolist(),
-                        'Nome' : Produtos })
+                        'Nome' : Produtos,
+                        'Tipo' : ("Celular "*10).split() + ("Desktop "*11).split()
+                       })
 
 # Declara data frame de entrega com 5000 entregas
 Entrega = pd.DataFrame({'ID_Entrega' : range(5000),
                         'ID_Produto' : Ordem.ID_Produto,
-                        'Data' : Data_Entrega})
+                        'Data' : Data_Entrega,
+                        'Tipo' : np.random.choice(["PAC","SEDEX"],5000)
+                       })
 
-# Remove Horario da Coluna Data da tabela Entrega
+# Remove Horario da Coluna Data tabela Entrega
 Entrega['Data'] = [str(i) for i in pd.to_datetime(Entrega['Data']).dt.date]
 
 # Declara Data Frame Sobrenome
 Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
-                          'Sobrenome' : Sobrenomes})		  
+                          'Sobrenome' : Sobrenomes
+                         })
 ```
 
 * __Define Função para_sql e gera motor SGBD__
@@ -316,11 +324,12 @@ sql = para_sql(Produto,"Produto")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Produto;")
   
-# Gera Tabela Produto
+# Gera tabela de Produtos 
 engine.execute("CREATE TABLE Produto ( \
                 ID_Produto mediumint(8) NOT NULL, \
                 ID_Fornecedor mediumint, \
                 Nome varchar(255) default NULL, \
+                Tipo varchar(255) default NULL, \
                 PRIMARY KEY (ID_Produto) \
               );")
 
@@ -332,17 +341,19 @@ engine.execute(sql)
 
 ```python
 # Converte para SQL
+# Converte para SQL
 sql = para_sql(Ordem,"Ordem")
 
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Ordem;")
   
-# Gera tabela de Ordem 
+# Gera tabela de Ordens 
 engine.execute("CREATE TABLE Ordem ( \
                 ID_Ordem  mediumint(8) NOT NULL, \
                 ID_Cliente mediumint, \
                 ID_Produto mediumint, \
                 Data varchar(255) default NULL, \
+                Nota_Fiscal mediumint default NULL, \
                 PRIMARY KEY (ID_Ordem) \
                 );")
 
@@ -359,11 +370,12 @@ sql = para_sql(Entrega,"Entrega")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Entrega;")
   
-# Gera tabela de Entrega 
+# Gera tabelas de Entregas 
 engine.execute("CREATE TABLE Entrega ( \
                 ID_Entrega mediumint(8) NOT NULL, \
                 ID_Produto mediumint, \
                 Data varchar(255), \
+                Tipo varchar(255) default NULL, \
                 PRIMARY KEY (ID_Entrega) \
                 );")
 
