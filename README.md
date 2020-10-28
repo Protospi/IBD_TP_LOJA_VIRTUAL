@@ -40,7 +40,7 @@ O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda
 
 Mapa do Modelo Entidade Relacionamento:
 
-![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Modelo_ER_1.png)
+![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Modelo_ER.png)
 
 ## 4. Projeto Lógico
 
