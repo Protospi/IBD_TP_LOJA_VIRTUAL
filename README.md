@@ -289,7 +289,7 @@ engine.execute(sql)
 
 * __Gera tabela de Sobrenomes__
 
-Para economizar espaço e eliminar informação redundante foi criada a entidade Sobrenome que possui como chave o atributo ID_Sobrenome.
+Para economizar o espaço físico e eliminar informação redundante foi criada a entidade Sobrenome que possui como chave o atributo ID_Sobrenome.
 * O atributo ID_Sobrenome foi definido como um inteiro médio com parâmetro de 8 para display e não pode receber o valor nulo.
 * O atributo Sobrenome foi definido com o tipo string de caracteres com parâmetro 255 para display.
 * No caso de um cliente ser apagado da entidade Cliente seu sobrenome nao deve ser apagado na entidade Sobrenome porque diversos clientes podem possuir o mesmo sobrenome.
