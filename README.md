@@ -256,15 +256,15 @@ engine = create_engine('sqlite:///ibdtp.db', echo = False)
 
 * __Gera tabela de Clientes__
 
-<p align="justify">
-	A tabela entidade clientes foi criada com os atributos ID_Cliente como chave primária, ID_Sobrenome como chave estrangeira, Nome e Email.
-	A chave primária deve receber valor não nulo e seu tamanho deve ser um número inteiro de tamanho medio e mostrando 8 digitos.
-	Os atributos Nome e Email receberam valor de caracteres mostrando um tamanho máximo de 255.
-	O atributo ID_Sobrenome recebeu o valor de inteiro medio també, mostrnado o máximo de 8 valores.
-	Como vários nomes referenciam o mesmo sobrenome, a entidade Sobrenome foi criada para evitar repeticoes desse atributo multivalorado.
-	Desta forma vários clientes podem referênciar o mesmo sobrenome pelo ID_Sobrenome.
-	Se um Sobrenome for apagado por engano da tabela Sobrenome, o atributo ID_Sobrenome deve receber valor nulo na entidade Cliente evitando a perda de dados dos Clientes.
-</p>
+
+A tabela entidade clientes foi criada com os atributos ID_Cliente como chave primária, ID_Sobrenome como chave estrangeira, Nome e Email.
+* A chave primária deve receber valor não nulo e seu tamanho deve ser um número inteiro de tamanho medio e mostrando 8 digitos.
+* Os atributos Nome e Email receberam valor de caracteres mostrando um tamanho máximo de 255.
+* O atributo ID_Sobrenome recebeu o valor de inteiro medio també, mostrnado o máximo de 8 valores.
+* Como vários nomes referenciam o mesmo sobrenome, a entidade Sobrenome foi criada para evitar repeticoes desse atributo multivalorado.
+* Desta forma vários clientes podem referênciar o mesmo sobrenome pelo ID_Sobrenome.
+* Se um Sobrenome for apagado por engano da tabela Sobrenome, o atributo ID_Sobrenome deve receber valor nulo na entidade Cliente evitando a perda de dados dos Clientes.
+
 
 ```python
 # Converte para SQL
