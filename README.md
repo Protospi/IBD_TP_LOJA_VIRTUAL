@@ -259,7 +259,7 @@ engine = create_engine('sqlite:///ibdtp.db', echo = False)
 
 A tabela entidade clientes foi criada com os atributos ID_Cliente como chave primária, ID_Sobrenome como chave estrangeira, Nome e Email.
 * A chave primária deve receber um valor não nulo e seu tamanho deve ser um número inteiro medio com parâmetro 8 para o tamanho do display.
-* Os atributos Nome e Email receberam valor de uma string de caracteres com parâmetro tamanho de 255 para display.
+* Os atributos Nome e Email receberam valor de uma string de caracteres com parâmetro tamanho de 50 para display.
 * O atributo ID_Sobrenome recebeu o valor de inteiro medio, com parâmetro tamanho de 8 para display.
 * Como vários nomes referenciam o mesmo sobrenome, a entidade Sobrenome foi criada para evitar repetições desse atributo multivalorado.
 * Desta forma vários clientes podem referênciar o mesmo sobrenome pelo ID_Sobrenome.
@@ -275,8 +275,8 @@ engine.execute("DROP TABLE IF EXISTS Cliente;")
 # Gera tabela de Clientes
 engine.execute("CREATE TABLE Cliente ( \
                 ID_Cliente mediumint(8) NOT NULL,\
-                Nome varchar(255) default NULL,\
-                Email varchar(255) default NULL,\
+                Nome varchar(50) default NULL,\
+                Email varchar(50) default NULL,\
                 ID_Sobrenome mediumint(8), \
                 PRIMARY KEY (ID_Cliente), \
                 FOREIGN KEY (ID_Sobrenome) REFERENCES Sobrenome(ID_Sobrenome) \
@@ -291,7 +291,7 @@ engine.execute(sql)
 
 Para economizar o espaço físico e eliminar informação redundante foi criada a entidade Sobrenome que possui como chave o atributo ID_Sobrenome.
 * O atributo ID_Sobrenome foi definido como um inteiro médio com parâmetro de tamanho 8 para display e não pode receber valor nulo.
-* O atributo Sobrenome foi definido com o tipo string de caracteres com parâmetro 255 para display.
+* O atributo Sobrenome foi definido com o tipo string de caracteres com parâmetro 50 para display.
 * No caso de um cliente ser apagado da entidade Cliente seu sobrenome nao deve ser apagado na entidade Sobrenome porque diversos clientes podem possuir o mesmo sobrenome.
 
 ```python
@@ -304,7 +304,7 @@ engine.execute("DROP TABLE IF EXISTS Sobrenome;")
 # Gera tabela Sobrenomes
 engine.execute("CREATE TABLE Sobrenome ( \
                 ID_Sobrenome mediumint(8) NOT NULL, \
-                Sobrenome varchar(255) default NULL, \
+                Sobrenome varchar(50) default NULL, \
                 PRIMARY KEY (ID_Sobrenome) \
                 );")
 
@@ -316,7 +316,7 @@ engine.execute(sql)
 
 A entidade Fornecedores possui 9 Fornecedores, tendo como chave primária o atributo ID_Fornecedor e os atributos Nome e Email.
 * O atributo ID_Fornecedor foi definido com inteiro medio com parâmetro de tamanho 8 e não nulo.
-* Os atributos Nome e Email receberam o tipo de uma string de caracteres com parâmetro de tamanho de 255 para display.
+* Os atributos Nome e Email receberam o tipo de uma string de caracteres com parâmetro de tamanho de 50 para display.
 * Como 1 fornecedor pode enviar mais de um produto e um produto pode ser enviado por mais que um fornecedor, apagar o registro de um produto não propaga para apagar o fornecedor deste produto.
 
 ```python# Converte para SQL
@@ -328,8 +328,8 @@ engine.execute("DROP TABLE IF EXISTS Fornecedor;")
 # Gera tabela de Fornecedor
 engine.execute("CREATE TABLE Fornecedor ( \
                 ID_Fornecedor  mediumint(8) NOT NULL, \
-                Nome varchar(255) default NULL, \
-                Email varchar(255) default NULL, \
+                Nome varchar(50) default NULL, \
+                Email varchar(50) default NULL, \
                 PRIMARY KEY (ID_Fornecedor) \
               );")
 
@@ -342,7 +342,7 @@ engine.execute(sql)
 A entidade Produtos possui como chave primária o atributo ID_produto, chave estrangeira ID_Fornecedor que referência o Fornecedor daquele Produto, bem como os atributos Nome e Tipo.
 * O atributo ID_Produto foi definido com inteiro medio com parâmetro de tamanho 8 para display e definido como não nulo.
 * O atributo ID_Fornecedor foi definido com inteiro medio com parâmetro de tamanho 8 para display.
-* Os atributos Nome e Tipo receberam valor de uma string de caracteres com parâmetro de tamanho de 255 para display.
+* Os atributos Nome e Tipo receberam valor de uma string de caracteres com parâmetro de tamanho de 50 para display.
 * Como 1 fornecedor pode enviar mais de um produto e um produto pode ser enviado por mais que um fornecedor, apagar o registro de um produto não propaga para apagar o fornecedor deste produto.
 
 ```python
@@ -356,8 +356,8 @@ engine.execute("DROP TABLE IF EXISTS Produto;")
 engine.execute("CREATE TABLE Produto ( \
                 ID_Produto mediumint(8) NOT NULL, \
                 ID_Fornecedor mediumint(8), \
-                Nome varchar(255) default NULL, \
-                Tipo varchar(255) default NULL, \
+                Nome varchar(50) default NULL, \
+                Tipo varchar(50) default NULL, \
                 PRIMARY KEY (ID_Produto) \
               );")
 
@@ -405,7 +405,7 @@ A entidade entregas possui como chave primária o atributo ID_Entrega, chave sec
 * O atributo ID_Entregas foi definido com um inteiro medio com parâmetro de tamanho 8 para display e definido como não nulo. 
 * O atributo ID_Produtos foi definido com um inteiro medio com parâmetro de tamanho 8 para display. 
 * O atributo Data foi definido como tipo datetime.
-* O atributo Tipo foi definido como string de caracteres.
+* O atributo Tipo foi definido como string de caracteres com parâmetro de tamanho de 50 para display.
 * Se um produto for apagado na entidade Produtos seu ID_Produto deve receber valor nulo na entidade Entrega porque uma entrega pode ter mais que um produto.
 
 ```python
@@ -420,7 +420,7 @@ engine.execute("CREATE TABLE Entrega ( \
                 ID_Entrega mediumint(8) NOT NULL, \
                 ID_Produto mediumint, \
                 Data datetime, \
-                Tipo varchar(255) default NULL, \
+                Tipo varchar(50) default NULL, \
                 PRIMARY KEY (ID_Entrega), \
                 FOREIGN KEY (ID_Produto) REFERENCES Produto(ID_Produto) \
                 ON DELETE CASCADE \
