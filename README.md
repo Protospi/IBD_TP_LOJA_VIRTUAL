@@ -256,6 +256,16 @@ engine = create_engine('sqlite:///ibdtp.db', echo = False)
 
 * __Gera tabela de Clientes__
 
+<p align="justify">
+	A tabela entidade clientes foi criada com os atributos ID_Cliente como chave primária, ID_Sobrenome como chave estrangeira, Nome e Email.
+	A chave primária deve receber valor não nulo e seu tamanho deve ser um número inteiro de tamanho medio e mostrando 8 digitos.
+	Os atributos Nome e Email receberam valor de caracteres mostrando um tamanho máximo de 255.
+	O atributo ID_Sobrenome recebeu o valor de inteiro medio també, mostrnado o máximo de 8 valores.
+	Como vários nomes referenciam o mesmo sobrenome, a entidade Sobrenome foi criada para evitar repeticoes desse atributo multivalorado.
+	Desta forma vários clientes podem referênciar o mesmo sobrenome pelo ID_Sobrenome.
+	Se um Sobrenome for apagado por engano da tabela Sobrenome, o atributo ID_Sobrenome deve receber valor nulo na entidade Cliente evitando a perda de dados dos Clientes.
+</p>
+
 ```python
 # Converte para SQL
 sql = para_sql(Cliente,"Cliente")
@@ -268,12 +278,17 @@ engine.execute("CREATE TABLE Cliente ( \
                 ID_Cliente mediumint(8) NOT NULL,\
                 Nome varchar(255) default NULL,\
                 Email varchar(255) default NULL,\
-                PRIMARY KEY (ID_Cliente) \
+                ID_Sobrenome mediumint(8), \
+                PRIMARY KEY (ID_Cliente), \
+                FOREIGN KEY (ID_Sobrenome) REFERENCES Sobrenome(ID_Sobrenome) \
+                ON DELETE SET NULL \
                 );")
 
 # Popula tabela
 engine.execute(sql)
 ```
+
+
 
 * __Gera tabela de Sobrenomes__
 
@@ -284,16 +299,21 @@ sql = para_sql(Sobrenome,"Sobrenome")
 # Apaga tabela se já existir
 engine.execute("DROP TABLE IF EXISTS Sobrenome;")
   
-# Gera tabela de Sobrenomes
+# Gera tabela Sobrenomes
 engine.execute("CREATE TABLE Sobrenome ( \
-                ID_Cliente mediumint(8) NOT NULL, \
+                ID_Sobrenome mediumint(8) NOT NULL, \
                 Sobrenome varchar(255) default NULL, \
-                PRIMARY KEY (ID_Cliente) \
+                PRIMARY KEY (ID_Sobrenome) \
                 );")
 
 # Popula tabela
 engine.execute(sql)
 ```
+
+<p align="justify">
+	Para economizar espaço e eliminar informação redundante foi criada a entidade Sobrenome que possui como chave o atributo ID_Sobrenome.
+	No caso de um cliente ser apagado da entidade Cliente seu sobrenome nao deve ser apagado na entidade Sobrenome porque diversos clientes podem possuir o mesmo sobrenome. 
+</p>
 
 * __Gera tabela de Fornecedores__
 
@@ -314,6 +334,11 @@ engine.execute("CREATE TABLE Fornecedor ( \
 # Popula tabela
 engine.execute(sql)
 ```
+
+<p align="justify">
+	A entidade Fornecedores possui 9 Fornecedores, tendo como chave promária o atributo ID_Fornecedor e os atributos Nome e Email.
+	Como 1 fornecedor pode enviar mais de um produto e um produto pode ser enviado por mais que um fornecedor, apagar o registro de um produto não propaga para apagar o fornecedor deste produto.
+</p>
 
 * __Gera tabela de Produtos__
 
@@ -337,10 +362,14 @@ engine.execute("CREATE TABLE Produto ( \
 engine.execute(sql)
 ```
 
+<p align="justify">
+	A entidade Produtos possui como chave primária o atributo ID_produto, chave estrangeira ID_Fornecedor que referência o Fornecedor daquele Produto, bem como os atributos Nome e Tipo.
+	Como 1 fornecedor pode enviar mais de um produto e um produto pode ser enviado por mais que um fornecedor, apagar o registro de um produto não propaga para apagar o fornecedor deste produto.
+</p>
+
 * __Gera tabela de Ordens__
 
 ```python
-# Converte para SQL
 # Converte para SQL
 sql = para_sql(Ordem,"Ordem")
 
@@ -354,12 +383,20 @@ engine.execute("CREATE TABLE Ordem ( \
                 ID_Produto mediumint, \
                 Data varchar(255) default NULL, \
                 Nota_Fiscal mediumint default NULL, \
-                PRIMARY KEY (ID_Ordem) \
+                PRIMARY KEY (ID_Ordem), \
+                FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente) \
+                ON DELETE CASCADE, \
+                FOREIGN KEY (ID_Produto) REFERENCES Produto(ID_Produto) \
+                ON DELETE SET NULL \
                 );")
 
 # Popula tabela
 engine.execute(sql)
 ```
+<p align="justify">
+	A entidade Ordem possui como chave primária o atributo ID_Ordem e como chaves estrangeiras ID_Cliente e ID_Produto para referênciar a informações de Clientes e Produtos.	 Como uma nota não pode ficar sem cliente, se um ID_Cliente é apagado do banco, a nota refrênte deve ser também apagada.
+	No caso de um ID_Produto ser apagado da entidade Produto a nota não deve ser apagado porque a nota pode conter mais de um produto. Mas o atributoi ID_Produto deve receber o valor nulo.
+</p>
 
 * __Gera tabela de Entregas__
 
@@ -377,11 +414,18 @@ engine.execute("CREATE TABLE Entrega ( \
                 Data varchar(255), \
                 Tipo varchar(255) default NULL, \
                 PRIMARY KEY (ID_Entrega) \
+                FOREIGN KEY (ID_Produto) REFERENCES Produto(ID_Produto) \
+                ON SET NULL
                 );")
 
 # Popula tabela
 engine.execute(sql)
 ```
+<p align="justify">
+	A entidade entregas possui como chave primária o atributo ID_Entrega, chave secundária o ID_Produto e os atributos Data e Tipo.
+	Se um produto for apagado na entidade Produtos seu ID_Produto deve receber valor nulo na entidade Entrega porque um entrega pode ter mais que um produto.
+</p>
+
 
 ## 6. Consultas
 
