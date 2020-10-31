@@ -83,7 +83,6 @@ O sistema de SGBD escolhido para alocar fisicamente os dados foi o mysql. Para c
 * __Pacotes Utilizados__
 
 ```python
-
 # Carrega Pacotes
 import requests
 from bs4 import BeautifulSoup
@@ -93,7 +92,6 @@ import datetime
 import random
 from unidecode import unidecode
 from sqlalchemy import create_engine 
-
 ```
 
 * __Extração de Sobrenomes__
@@ -101,13 +99,10 @@ from sqlalchemy import create_engine
 ```python
 # Define Url de Sobrenomes
 url = 'https://www.procob.com/os-sobrenomes-mais-comuns-do-brasil/'
- 
 # Conecta com URL
 reqs = requests.get(url)
- 
 # Extrai informações de lista ordenada
-soup = BeautifulSoup(reqs.text, 'lxml')
- 
+soup = BeautifulSoup(reqs.text, 'lxml') 
 # Define Sobrenomes
 Sobrenomes = np.random.choice([tag.text for tag in soup.find_all("ol")][0].split(), 90)
 ```
@@ -115,19 +110,14 @@ Sobrenomes = np.random.choice([tag.text for tag in soup.find_all("ol")][0].split
 * __Extração do Nome de Homens__
 
 ```python
-
 # Define Url de Homens
 url2 = 'https://www.minhavida.com.br/familia/materias/35919-100-nomes-para-meninos-mais-comuns-confira-lista'
-
 # Conecta com URL
 reqs = requests.get(url2)
-
 # Extrai informações de lista ordenada
 soup = BeautifulSoup(reqs.text, 'lxml')
-
 # Define Sobrenomes
 Homens = [tag.text for tag in soup.find_all("ul")][1].split()
-
 ```
 
 * __Extração do Nome de Mulheres__
