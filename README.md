@@ -31,34 +31,34 @@ O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda
 
 * __Restrições de Chaves:__
 
-<img src="https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png" height="400">
+<img src="https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png" height="450" width="500">
 
 * __Restrições de Integridade Referencial:__
 
 	* Se um Sobrenome for apagado da entidade Sobrenome o campo ID_Sobrenome na Entidade Cliente deve receber valor nulo.
 Se um Sobrenome for apagado da entidade Cliente a operação não deve ser bloqueada para a entidade Sobrenome.
 
-	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr1.png)
+	![ER1](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr1.png)
 	
 	* Se um cliente for excluído da entidade Cliente a operação deve se propagar na forma de valor nulo para entidade ordem de compra. 
 Se um cliente for apagado da ordem de compra a operação exclusão deve ser bloqueada para a entidade Cliente.
 
-	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr2.png)
+	![ER2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr2.png)
 	
 	* Se um produto for excluído da entidade Produto a operação deve se propagar na forma de valor nulo para entidade ordem de compra. 
 Se uma ordem de compra for excluída da entidade Ordem a operação exclusão deve ser bloqueada para a entidade Produto.
 
-	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr3.png)
+	![ER3](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr3.png)
 	
 	* Se um fornecedor for excluído da entidade Produto a operação deve ser bloqueada para entidade Fornecedor. 
 Se um fornecedor for excluído da entidade Fornecedor a operação exclusão deve ser propagada como valor nulo para a entidade Produto.
 
-	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr4.png)
+	![ER4](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr4.png)
 	
 	* Se um produto for excluído da entidade Produto a operação deve se propagar na forma de valor nulo para entidade Entrega. 
 Se um produto for excluído da entidade Entrega, a operação exclusão deve ser bloqueada para a entidade Produto.
 
-	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr5.png)
+	![ER5](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr5.png)
 
 ## 3. Projeto Conceitual
 
@@ -133,16 +133,12 @@ Homens = [tag.text for tag in soup.find_all("ul")][1].split()
 * __Extração do Nome de Mulheres__
 
 ```python
-
 # Define Url de Mulheres
 url3 = 'https://www.minhavida.com.br/familia/materias/35925-100-nomes-para-meninas-mais-comuns-confira-lista'
-
 # Conecta com URL
 reqs = requests.get(url3)
-
 # Extrai informações de lista ordenada
 soup = BeautifulSoup(reqs.text, 'lxml')
-
 # Define Sobrenomes
 Mulheres = [tag.text for tag in soup.find_all("ul")][1].split()
 
@@ -154,62 +150,45 @@ Mulheres = [tag.text for tag in soup.find_all("ul")][1].split()
 
 # Define Url de Melhores 10 celulares
 url4 = 'https://mobizoo.com.br/opiniao/celulares-mais-vendidos/'
-
 # Conecta com URL
 reqs = requests.get(url4)
-
 # Extrai informações da url
 soup = BeautifulSoup(reqs.text, 'lxml')
-
 # Define Produtos de Celulares
 Produtos_Celulares = [tag.text for tag in soup.find_all("th")][5::4]
-
 # Define Url de Melhores Desktops
 url5 = 'https://spy.com/articles/gadgets/electronics/best-desktop-computers-reviews-247841/'
-
 # Conecta com URL
 reqs = requests.get(url5)
-
 # Extrai informações da url
 soup = BeautifulSoup(reqs.text, 'lxml')
-
 # Define Variavel auxiliar com titulos completos com categoria
 Produtos_Desktop = [tag.text for tag in soup.find_all("h2")][:11]
-
 # Define Produtos Desktops 
 Produtos_Desktop = list(map(lambda w: w.split(". ", 1)[1], Produtos_Desktop))
-
 # Concatena Produtos
 Produtos = Produtos_Celulares + Produtos_Desktop
-
 ```
 
 * __Gera Emails e Datas de Ordem e Entrega__
 
 ```python
-
 # Define Encoding do texto
 encoding = "utf-8"
-
 # Declara email de Clientes
 email_Cliente = [unidecode(i) + j for i, j in zip(list(Homens[0:89]), np.random.choice(["@gmail.com","@yahoo.com","@bh.com"], 90).tolist())] 
-
 # Email de Fornecedor
 email_Fornecedor = [unidecode(i) + j for i, j in zip(list(Homens[90:99]), np.random.choice(["@gmail.com","@yahoo.com","@bh.com"], 90).tolist())]
-
 # Data de Inicio
 inicio = datetime.date(2020, 1, 1)
 fim = datetime.date(2020, 10, 1)
-
 # Calcula Data
 tempo_entre_datas = fim - inicio
 dias_entre_datas = tempo_entre_datas.days
 dias_aleatorios = random.randrange(dias_entre_datas)
 data_aleatoria = inicio + datetime.timedelta(days=dias_aleatorios)
-
 # Data Ordem
 Data_Ordem = pd.date_range(start = '2020-01-01', end = '2020-10-01', periods=5000)
-
 # Data Entrega
 Data_Entrega = [data + datetime.timedelta(days=random.randrange(dias_entre_datas)) for data in Data_Ordem]
 ```
@@ -221,61 +200,46 @@ Data_Entrega = [data + datetime.timedelta(days=random.randrange(dias_entre_datas
 Cliente = pd.DataFrame({'ID_Cliente' : range(89),
                        'Nome' : np.random.choice(Homens + Mulheres, 89).tolist(),
                        'Email' : email_Cliente})
-
-
 # Declara data frame de Fornecedor com 50 Fornecedores
 Fornecedor = pd.DataFrame({'ID_Fornecedor' : range(9),
                            'Nome' : Homens[90:99],
                            'Email' : email_Fornecedor})
-
 # Declara data frame de Ordem com 5000 ordens
 Ordem = pd.DataFrame({'ID_Ordem' : range(5000),
                       'ID_Cliente' : np.random.choice(range(500), 5000).tolist(),
                       'ID_Produto' : np.random.choice(range(20), 5000).tolist(),
                       'Data' : Data_Ordem,
-                      'Nota_Fiscal' :  range(1000,6000)
-                       })
-
+                      'Nota_Fiscal' :  range(1000,6000)})
 # Remove Horario da Coluna Data tablea Ordem
 Ordem['Data'] = [str(i) for i in pd.to_datetime(Ordem['Data']).dt.date]
-
 # Declara dataframe de Produto com 10 produtos
 Produto = pd.DataFrame({'ID_Produto' : range(21),
                         'ID_Fornecedor' : np.random.choice(range(9), 21).tolist(),
                         'Nome' : Produtos,
-                        'Tipo' : ("Celular "*10).split() + ("Desktop "*11).split()
-                       })
-
+                        'Tipo' : ("Celular "*10).split() + ("Desktop "*11).split()})
 # Declara data frame de entrega com 5000 entregas
 Entrega = pd.DataFrame({'ID_Entrega' : range(5000),
                         'ID_Produto' : Ordem.ID_Produto,
                         'Data' : Data_Entrega,
-                        'Tipo' : np.random.choice(["PAC","SEDEX"],5000)
-                       })
-
+                        'Tipo' : np.random.choice(["PAC","SEDEX"],5000)})
 # Remove Horario da Coluna Data tabela Entrega
 Entrega['Data'] = [str(i) for i in pd.to_datetime(Entrega['Data']).dt.date]
-
 # Declara Data Frame Sobrenome
 Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
-                          'Sobrenome' : Sobrenomes
-                         })
+                          'Sobrenome' : Sobrenomes})
 ```
 
 * __Define Função para_sql e gera motor SGBD__
 
 ```python
-
 # Define Função
 def para_sql(df, nome):
   rows = df.to_records(index=False)
   values = ', '.join(map(str, rows))
   sql = "INSERT INTO "+ nome + " VALUES {}".format(values)
   return sql.replace("""\'""", """\"""")
-
 # Cria Motor de SQL 
 engine = create_engine('sqlite:///ibdtp.db', echo = False)
-
 ```
 
 * __Gera tabela de Clientes__
@@ -292,10 +256,8 @@ A tabela entidade clientes foi criada com os atributos ID_Cliente como chave pri
 ```python
 # Converte para SQL
 sql = para_sql(Cliente,"Cliente")
-
 # Apaga tabela se já existir
-engine.execute("DROP TABLE IF EXISTS Cliente;")
-  
+engine.execute("DROP TABLE IF EXISTS Cliente;") 
 # Gera tabela de Clientes
 engine.execute("CREATE TABLE Cliente ( \
                 ID_Cliente mediumint(8) NOT NULL,\
@@ -306,7 +268,6 @@ engine.execute("CREATE TABLE Cliente ( \
                 FOREIGN KEY (ID_Sobrenome) REFERENCES Sobrenome(ID_Sobrenome) \
                 ON DELETE SET NULL \
                 );")
-
 # Popula tabela
 engine.execute(sql)
 ```
@@ -321,17 +282,14 @@ Para economizar o espaço físico e eliminar informação redundante foi criada 
 ```python
 # Converte para SQL
 sql = para_sql(Sobrenome,"Sobrenome")
-
 # Apaga tabela se já existir
-engine.execute("DROP TABLE IF EXISTS Sobrenome;")
-  
+engine.execute("DROP TABLE IF EXISTS Sobrenome;")  
 # Gera tabela Sobrenomes
 engine.execute("CREATE TABLE Sobrenome ( \
                 ID_Sobrenome mediumint(8) NOT NULL, \
                 Sobrenome varchar(50) default NULL, \
                 PRIMARY KEY (ID_Sobrenome) \
                 );")
-
 # Popula tabela
 engine.execute(sql)
 ```
@@ -345,10 +303,8 @@ A entidade Fornecedores possui 9 Fornecedores, tendo como chave primária o atri
 
 ```python# Converte para SQL
 sql = para_sql(Fornecedor,"Fornecedor")
-
 # Apaga tabela se já existir
-engine.execute("DROP TABLE IF EXISTS Fornecedor;")
-  
+engine.execute("DROP TABLE IF EXISTS Fornecedor;") 
 # Gera tabela de Fornecedor
 engine.execute("CREATE TABLE Fornecedor ( \
                 ID_Fornecedor  mediumint(8) NOT NULL, \
@@ -356,7 +312,6 @@ engine.execute("CREATE TABLE Fornecedor ( \
                 Email varchar(50) default NULL, \
                 PRIMARY KEY (ID_Fornecedor) \
               );")
-
 # Popula tabela
 engine.execute(sql)
 ```
@@ -372,10 +327,8 @@ A entidade Produtos possui como chave primária o atributo ID_produto, chave est
 ```python
 # Converte para SQL
 sql = para_sql(Produto,"Produto")
-
 # Apaga tabela se já existir
-engine.execute("DROP TABLE IF EXISTS Produto;")
-  
+engine.execute("DROP TABLE IF EXISTS Produto;")  
 # Gera tabela de Produtos 
 engine.execute("CREATE TABLE Produto ( \
                 ID_Produto mediumint(8) NOT NULL, \
@@ -384,7 +337,6 @@ engine.execute("CREATE TABLE Produto ( \
                 Tipo varchar(50) default NULL, \
                 PRIMARY KEY (ID_Produto) \
               );")
-
 # Popula tabela
 engine.execute(sql)
 ```
@@ -401,10 +353,8 @@ A entidade Ordem possui como chave primária o atributo ID_Ordem e como chaves e
 ```python
 # Converte para SQL
 sql = para_sql(Ordem,"Ordem")
-
 # Apaga tabela se já existir
-engine.execute("DROP TABLE IF EXISTS Ordem;")
-  
+engine.execute("DROP TABLE IF EXISTS Ordem;")  
 # Gera tabela de Ordens 
 engine.execute("CREATE TABLE Ordem ( \
                 ID_Ordem  mediumint(8) NOT NULL, \
@@ -418,7 +368,6 @@ engine.execute("CREATE TABLE Ordem ( \
                 FOREIGN KEY (ID_Produto) REFERENCES Produto(ID_Produto) \
                 ON DELETE SET NULL \
                 );")
-
 # Popula tabela
 engine.execute(sql)
 ```
@@ -435,10 +384,8 @@ A entidade entregas possui como chave primária o atributo ID_Entrega, chave sec
 ```python
 # Converte para SQL
 sql = para_sql(Entrega,"Entrega")
-
 # Apaga tabela se já existir
-engine.execute("DROP TABLE IF EXISTS Entrega;")
-  
+engine.execute("DROP TABLE IF EXISTS Entrega;") 
 # Gera tabelas de Entregas 
 engine.execute("CREATE TABLE Entrega ( \
                 ID_Entrega mediumint(8) NOT NULL, \
@@ -449,7 +396,6 @@ engine.execute("CREATE TABLE Entrega ( \
                 FOREIGN KEY (ID_Produto) REFERENCES Produto(ID_Produto) \
                 ON DELETE CASCADE \
                 );")
-
 # Popula tabela
 engine.execute(sql)
 ```
@@ -483,7 +429,6 @@ Foram Consideradas 10 consultas em SQL para avaliar a consistência e tempo gast
 q3 = "SELECT c.ID_Cliente, c.Nome, c.Email, o.ID_Ordem, o.ID_Produto, o.Data \
       FROM Cliente as c \
       JOIN Ordem as o ON c.ID_Cliente = o.ID_Cliente"
-
 # Avalia tempo gasto na consulta para projetar a jução de Cliente e Ordem
 %timeit pd.read_sql(q3, con = engine)
 ```
@@ -497,7 +442,6 @@ q3 = "SELECT c.ID_Cliente, c.Nome, c.Email, o.ID_Ordem, o.ID_Produto, o.Data \
 q4 = "SELECT p.ID_Produto, p.ID_Fornecedor, p.Nome as Nome_Produto, o.ID_Ordem, o.ID_Cliente, o.Data \
       FROM Produto as p \
       JOIN Ordem as o ON p.ID_Produto = o.ID_Produto"
-
 # Avalia tempo gasto Consulta para projetar a jução de Produto e Ordem
 %timeit pd.read_sql(q4, con = engine)
 ```
@@ -511,7 +455,6 @@ q4 = "SELECT p.ID_Produto, p.ID_Fornecedor, p.Nome as Nome_Produto, o.ID_Ordem, 
 q5 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Produto  \
       FROM Fornecedor as f \
       JOIN Produto as p ON f.ID_Fornecedor = p.ID_Fornecedor"
-
 # Avalia tempo gasto na consulta para projetar a junção de Fornecedor e Produto
 %timeit pd.read_sql(q5, con = engine)
 ```
@@ -526,7 +469,6 @@ q6 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Prod
       FROM Fornecedor as f \
       JOIN Produto as p ON f.ID_Fornecedor = p.ID_Fornecedor \
       JOIN Ordem as o ON p.ID_Produto = o.ID_Produto"
-
 # Consulta para projetar a junção de Fornecedor, Produto e Ordem
 %timeit pd.read_sql(q6, con = engine)
 ```
@@ -541,7 +483,6 @@ q7 = "SELECT p.ID_Produto, p.ID_Fornecedor, c.Nome as Nome_Cliente, o.ID_Ordem, 
       FROM Produto as p \
       JOIN Ordem as o ON p.ID_Produto = o.ID_Produto \
       JOIN Cliente as c ON o.ID_Cliente = c.ID_Cliente"
-
 # Avalia tempo gasto na consulta para projetar a jução de Produto, Ordem e Cliente
 %timeit pd.read_sql(q4, con = engine)
 ```
@@ -556,7 +497,6 @@ q8 = "SELECT p.ID_Produto, p.ID_Fornecedor, f.Nome as Nome_Fornecedor, o.ID_Orde
       FROM Produto as p \
       JOIN Ordem as o ON p.ID_Produto = o.ID_Produto \
       JOIN Fornecedor as f ON p.ID_Fornecedor = p.ID_Fornecedor"
-
 # Avalia tempo gasto na consulta para projetar a jução de Produto, Ordem e Fornecedor
 %timeit pd.read_sql(q8, con = engine)
 ```
@@ -588,7 +528,6 @@ q10 = "SELECT f.ID_Fornecedor, f.Nome as Nome_Fornecedor, COUNT(p.ID_Produto) as
        JOIN Produto as p ON f.ID_Fornecedor = p.ID_Fornecedor \
        GROUP BY f.ID_Fornecedor \
        ORDER BY Quantidade_de_Produtos DESC"
-
 # Consulta para Calcular a quantidade de produtos por fornecedor
 %timeit pd.read_sql(q10, con = engine)
 ```
