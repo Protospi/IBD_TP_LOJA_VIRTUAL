@@ -74,7 +74,7 @@ Mapa do Modelo Lógico
 
 * __Restrições das Relações Projeto Lógico__
 
-![Restrições Lógicas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/restricoes_projeto_logico.png)
+![Restrições Lógicas](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/restricao_logica.png)
 
 ## 5. Projeto Físico
 
