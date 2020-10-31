@@ -35,7 +35,10 @@ O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda
 
 * __Restrições de Integridade Referencial:__
 
-![RI2](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_2.png)
+* Se um cliente for excluído da entidade Cliente o mesmo cliente deve receber valor nulo na entidade ordem de compra.
+* Se um cliente for apagado da ordem de compra a exclusão não deve se propagar para a entidade Cliente.
+
+![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr1.png)
 
 ## 3. Projeto Conceitual
 
