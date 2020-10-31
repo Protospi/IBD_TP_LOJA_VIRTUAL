@@ -12,21 +12,22 @@ O objetivo deste projeto foi desenvolver um Modelo de Entidade Relacionamento, u
 
 ## 1. Mini Mundo
 
-O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda de produtos que pode ser caracterizado por:
-* Clientes que possuem uma identificação única, um Nome e Sobrenome e um endereço eletrônico.
-* Ordens de pedido dos clientes que possuem um identificador único da ordem, a informação sobre o cliente que colocou a ordem, a informação dos produtos da ordem e a informação da data da colocação da ordem de compra. 
-* Produtos disponíveis no estoque da loja com um identificador único do código do produto, o identificador do fornecedor do produto e o nome do Produto.
-* Fornecedores de produtos com código de identificador único para cada fornecedor, Nome do fornecedor e endereço eletrônico do fornecedor.
-* Entregas dos produtos com código único de entrega, código identificador do Produto e Data da Entrega.
+O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda de produtos que pode ser definido por:
+* Clientes que possuem informações como o nome, composto de primeiro nome e sobrenome e o endereço eletrônico.
+* Pedido dos clientes que possuem as informações sobre a nota fiscal e a data da colocação da ordem de compra. 
+* Produtos disponíveis no estoque da loja com as informações sobre seus nomes dos produtos e sobre o tipo, se é celular ou computador.
+* Fornecedores de produtos que possuem informações o nome e endereço eletrônico dos fornecedores.
+* Entregas dos produtos que possuem informações sobre a Data da Entrega e o tipo de entrega, se é SEDEX ou PAC.
 
 ## 2. Análise de Requisitos
 
 * Requisitos dos atributos das 5 entidades do mini mundo
 	* Cliente (ID_Cliente(nn), Nome, Email)
-	* Ordem (ID_Ordem(nn), ID_Produto(nn), Data)
-	* Produto (ID_Produto(nn), ID_Fornecedor(nn), Nome)
+	* Sobrenome(ID_Sobrenome(nn), Sobrenome)
+	* Ordem (ID_Ordem(nn), ID_Produto(nn), Data, Nota_Fiscal)
+	* Produto (ID_Produto(nn), ID_Fornecedor(nn), Nome, Tipo)
 	* Fornecedor (ID_Fornecedor(nn), Nome, Email)
-	* Entrega (ID_Entrega(nn), ID_Produto(nn), Data)
+	* Entrega (ID_Entrega(nn), ID_Produto(nn), Data, Tipo)
 
 * __Restrições de Chaves:__
 
