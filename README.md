@@ -49,6 +49,16 @@ Se um cliente for apagado da ordem de compra a operação exclusão deve ser blo
 Se uma ordem de compra for excluída da entidade Ordem a operação exclusão deve ser bloqueada para a entidade Produto.
 
 	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr3.png)
+	
+	* Se um fornecedor for excluído da entidade Produto a operação deve ser bloqueada para entidade Fornecedor. 
+Se um fornecedor for excluído da entidade Fornecedor a operação exclusão deve ser propagada como valor nulo para a entidade Produto.
+
+	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr4.png)
+	
+	* Se um produto for excluído da entidade Produto a operação deve se propagar na forma de valor nulo para entidade Entrega. 
+Se um produto for excluído da entidade Entrega, a operação exclusão deve ser bloqueada para a entidade Produto.
+
+	![ER](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/rr5.png)
 
 ## 3. Projeto Conceitual
 
