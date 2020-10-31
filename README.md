@@ -31,8 +31,7 @@ O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda
 
 * __Restrições de Chaves:__
 
-<img src="(https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png" height="38">
-
+<img src="https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Restricao_Integridade_1.png" height="400">
 
 * __Restrições de Integridade Referencial:__
 
