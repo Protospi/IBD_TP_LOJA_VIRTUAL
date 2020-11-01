@@ -15,7 +15,7 @@ O objetivo deste projeto foi desenvolver um Modelo de Entidade Relacionamento, u
 O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda de produtos que pode ser definido por:
 * Clientes que possuem informações como o nome, composto de primeiro nome e sobrenome e o endereço eletrônico.
 * Pedido dos clientes que possuem as informações sobre a nota fiscal e a data da colocação da ordem de compra. 
-* Produtos disponíveis no estoque da loja com as informações sobre seus nomes dos produtos e sobre o tipo, se é celular ou computador.
+* Produtos disponíveis na loja com as informações sobre o nome e o tipo do produto, se é celular ou computador.
 * Fornecedores de produtos que possuem informações o nome e endereço eletrônico dos fornecedores.
 * Entregas dos produtos que possuem informações sobre a Data da Entrega e o tipo de entrega, se é SEDEX ou PAC.
 
