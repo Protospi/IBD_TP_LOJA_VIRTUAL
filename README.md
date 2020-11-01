@@ -569,13 +569,24 @@ q5_1 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Pr
 * __Consulta 6: (Fornecedor  ⋈ (IDFornecedor=IDFornecedor)  Produto)⋈ (IDProduto=IDProduto)  Ordem__
 
 ```python
-# Executa Consulta 6 e avalia tempo
+
+# Declara query 6
 q6 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Produto, o.ID_Cliente, o.Data \
       FROM Fornecedor as f \
       JOIN Produto as p ON f.ID_Fornecedor = p.ID_Fornecedor \
       JOIN Ordem as o ON p.ID_Produto = o.ID_Produto"
+
 # Consulta para projetar a junção de Fornecedor, Produto e Ordem
 %timeit pd.read_sql(q6, con = engine)
+
+# Declara query 6.1 troca junção por união
+q6_1 = "SELECT f.ID_Fornecedor, f.Nome, f.Email, p.ID_Produto, p.Nome as Nome_Produto, o.ID_Cliente, o.Data \
+      FROM Fornecedor as f, Produto as p, Ordem as o \
+      WHERE f.ID_Fornecedor = p.ID_Fornecedor AND p.ID_Produto = o.ID_Produto"
+
+# Consulta para projetar a junção de Fornecedor, Produto e Ordem
+%timeit pd.read_sql(q6_1, con = engine)
+
 ```
 
 ![Consulta 6](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Consultas/q6.png)
