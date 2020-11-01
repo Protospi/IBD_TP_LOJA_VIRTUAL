@@ -221,42 +221,51 @@ Data_Entrega = [data + datetime.timedelta(days=random.randrange(dias_entre_datas
 * __Gera Data Frames do Pandas__
 
 ```python
+
+# Declara Data Frame Sobrenome
+Sobrenome = pd.DataFrame({'ID_Sobrenome' : range(50),
+                          'Sobrenome' : Sobrenomes
+                         })
+
 # Declara data frame de Clientes com 500 clientes
 Cliente = pd.DataFrame({'ID_Cliente' : range(89),
+                        'ID_Sobrenome' : np.random.choice(Sobrenome.ID_Sobrenome, 89).tolist(),
                        'Nome' : np.random.choice(Homens + Mulheres, 89).tolist(),
                        'Email' : email_Cliente})
-		       
+
+
 # Declara data frame de Fornecedor com 50 Fornecedores
 Fornecedor = pd.DataFrame({'ID_Fornecedor' : range(9),
                            'Nome' : Homens[90:99],
                            'Email' : email_Fornecedor})
-			   
+
 # Declara data frame de Ordem com 5000 ordens
 Ordem = pd.DataFrame({'ID_Ordem' : range(5000),
                       'ID_Cliente' : np.random.choice(range(500), 5000).tolist(),
                       'ID_Produto' : np.random.choice(range(20), 5000).tolist(),
                       'Data' : Data_Ordem,
-                      'Nota_Fiscal' :  range(1000,6000)})
-		      
+                      'Nota_Fiscal' :  range(1000,6000)
+                       })
+
 # Remove Horario da Coluna Data tablea Ordem
 Ordem['Data'] = [str(i) for i in pd.to_datetime(Ordem['Data']).dt.date]
+
 # Declara dataframe de Produto com 10 produtos
 Produto = pd.DataFrame({'ID_Produto' : range(21),
                         'ID_Fornecedor' : np.random.choice(range(9), 21).tolist(),
                         'Nome' : Produtos,
-                        'Tipo' : ("Celular "*10).split() + ("Desktop "*11).split()})
-			
+                        'Tipo' : ("Celular "*10).split() + ("Desktop "*11).split()
+                       })
+
 # Declara data frame de entrega com 5000 entregas
 Entrega = pd.DataFrame({'ID_Entrega' : range(5000),
                         'ID_Produto' : Ordem.ID_Produto,
                         'Data' : Data_Entrega,
-                        'Tipo' : np.random.choice(["PAC","SEDEX"],5000)})
-			
+                        'Tipo' : np.random.choice(["PAC","SEDEX"],5000)
+                       })
+
 # Remove Horario da Coluna Data tabela Entrega
 Entrega['Data'] = [str(i) for i in pd.to_datetime(Entrega['Data']).dt.date]
-# Declara Data Frame Sobrenome
-Sobrenome = pd.DataFrame({'ID_Cliente' : range(90),
-                          'Sobrenome' : Sobrenomes})
 			  
 ```
 
