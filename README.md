@@ -68,7 +68,7 @@ Mapa do Modelo Entidade Relacionamento:
 
 ## 4. Projeto Lógico
 
-Mapa do Modelo Lógico
+* __Mapa do Modelo Lógico__
 
 ![Modelo Logico](https://github.com/Protospi/IBD_TP_LOJA_VIRTUAL/blob/main/Modelagem/Modelo_Logico.png)
 
