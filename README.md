@@ -16,13 +16,13 @@ O mini mundo escolhido foi a simplificação de um comércio eletrônico de vend
 * Clientes que possuem informações como o nome, composto de primeiro nome e sobrenome e o endereço eletrônico.
 * Pedido dos clientes que possuem as informações sobre a nota fiscal e a data da colocação da ordem de compra. 
 * Produtos disponíveis na loja com as informações sobre o nome e o tipo do produto, se é celular ou computador.
-* Fornecedores de produtos que possuem informações o nome e endereço eletrônico dos fornecedores.
-* Entregas dos produtos que possuem informações sobre a Data da Entrega e o tipo de entrega, se é SEDEX ou PAC.
+* Fornecedores de produtos que possuem informações como o nome e endereço eletrônico.
+* Entregas dos produtos que possuem informações sobre a data da entrega e o tipo de entrega, se é SEDEX ou PAC.
 
 ## 2. Análise de Requisitos
 
 * Requisitos dos atributos das 5 entidades do mini mundo
-	* Cliente (ID_Cliente(nn), Nome, Email)
+	* Cliente (ID_Cliente(nn), ID_Sobrenome(nn), Nome, Email)
 	* Sobrenome(ID_Sobrenome(nn), Sobrenome)
 	* Ordem (ID_Ordem(nn), ID_Produto(nn), Data, Nota_Fiscal)
 	* Produto (ID_Produto(nn), ID_Fornecedor(nn), Nome, Tipo)
