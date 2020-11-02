@@ -5,14 +5,14 @@
 
 ### Resumo
 <p align="justify">
-O objetivo deste projeto foi desenvolver um Modelo de Entidade Relacionamento, um Modelo Lógico e um SGBD com implementação física e simulação dos dados para a aplicação Loja Virtual considerando diretrizes de integridade referencial e lógica e aplicar consultas SGBD avaliando o tempo gasto nos tipos de consulta. O projeto foi desenvolvido nas ferramentas Lucid Charts e Diagrams para a criação de diagramas e esquemas dos dados nas fases conceitual e lógica. A parte da implementação Física foi desenvolvida na ferramenta Google Colab utilizando a liguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram extraidos da web com os pacotes bs4 e requests. Os dados foram simulados com os pacotes numpy e random, armazenados em dataframes do pacote pandas e convertidos para SQL com o pacote sqlalchemy. Finalmente a função %timeit da liguagem Python foi utilizada para mensurar a performance dos diferentes tipos de consultas.
+O objetivo deste projeto foi desenvolver o SGBD de uma aplicação do tipo comércio eletrônico referente ao trabalho final da disciplina Introdução a Banco de Dados da UFMG. Um Modelo do tipo Entidade Relacionamento, com um projeto lógico e restrições de integridade foram desenvolvidos nas etapas de desenho e aplicadados na implementação física do SGBD. O projeto foi desenvolvido nas ferramentas Lucid Charts e Diagrams para a criação de diagramas e esquemas dos dados nas etapas conceitual e lógica. A implementação Física foi realizada na ferramenta Google Colab utilizando a liguagem Python. Os nomes de Homens, Mulheres, Sobrenomes e Produtos foram extraidos da web com os pacotes bs4 e requests. Os dados foram aleatoriamente simulados com os pacotes numpy e random, armazenados em dataframes do pacote pandas e convertidos para mySQL com o pacote sqlalchemy. Finalmente a função %timeit da liguagem Python foi utilizada para comparar a performance da mesma consulta com diferentes estruturas.
 </p>
 
 [![Abrir em Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1vZ0fRxiSPFuvCjG4Hm_1_MRpO4xVDNWf?usp=sharing)
 
 ## 1. Mini Mundo
 
-O mini mundo escolhido foi a simplificação de um comercio eletrônico de venda de produtos que pode ser definido por:
+O mini mundo escolhido foi a simplificação de um comércio eletrônico de venda de produtos que pode ser definido por:
 * Clientes que possuem informações como o nome, composto de primeiro nome e sobrenome e o endereço eletrônico.
 * Pedido dos clientes que possuem as informações sobre a nota fiscal e a data da colocação da ordem de compra. 
 * Produtos disponíveis na loja com as informações sobre o nome e o tipo do produto, se é celular ou computador.
